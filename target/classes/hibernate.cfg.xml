@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<property name="hibernate.connection.password">11novembro92</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/TrocaJogo</property>
+		<property name="hibernate.connection.username">postgres</property>
+		<property name="hibernate.default_schema">public</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		<property name="hibernate.jdbc.batch_size">0</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.connection.autocommit">true</property>
+		<property name="hibernate.transaction.auto_close_session">true</property>
+		<property name="hibernate.transaction.flush_before_completion">true</property>
+		<property name="hibernate.event.merge.entity_copy_observer">allow</property>
+	
+		
+		<mapping class="com.trocajogo.model.Jogo" />
+		<mapping class="com.trocajogo.model.Plataforma.Plataforma" />
+		<mapping class="com.trocajogo.model.Usuario" />
+		<mapping class="com.trocajogo.model.JogoUsuario" />
+		<mapping class="com.trocajogo.model.JogoImagem" />
+	</session-factory>
+</hibernate-configuration>
