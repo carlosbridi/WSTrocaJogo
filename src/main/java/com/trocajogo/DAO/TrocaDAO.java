@@ -131,21 +131,21 @@ public class TrocaDAO {
 		ItensJogoTroca itemjogoTroca = new ItensJogoTroca();
 		
 		try{
-			itemjogoTroca.getJogoOferta().setId(resItens.getInt("idjogooferta"));
-			itemjogoTroca.getJogoTroca().setId(resItens.getInt("idjogotroca"));
-			
-			itemjogoTroca.getJogoOferta().setNomejogo(resItens.getString("nomejogooferta"));
-			itemjogoTroca.getJogoTroca().setNomejogo(resItens.getString("nomejogotroca"));
-			itemjogoTroca.getJogoOferta().setDescricao(resItens.getString("jogoofertadescricao"));
-			itemjogoTroca.getJogoTroca().setDescricao(resItens.getString("jogotrocadescricao"));
-			itemjogoTroca.getJogoOferta().setCategoria(resItens.getInt("jogoofertacategoria"));
-			itemjogoTroca.getJogoTroca().setCategoria(resItens.getInt("jogotrocacategoria"));;
-			itemjogoTroca.getJogoTroca().setPlataforma(new Plataforma(resItens.getInt("plataformatroca")));
-			itemjogoTroca.getJogoOferta().setPlataforma(new Plataforma(resItens.getInt("plataformaoferta")));
-			itemjogoTroca.getJogoTroca().setAno(resItens.getInt("jogotrocaano"));
-			itemjogoTroca.getJogoOferta().setAno(resItens.getInt("jogoofertaano"));
-			itemjogoTroca.getJogoTroca().setImagem(resItens.getString("jogotrocaimagem"));
-			itemjogoTroca.getJogoOferta().setImagem(resItens.getString("jogoofertaimagem"));
+//			itemjogoTroca.getJogoOferta().setId(resItens.getInt("idjogooferta"));
+//			itemjogoTroca.getJogoTroca().setId(resItens.getInt("idjogotroca"));
+//			
+//			itemjogoTroca.getJogoOferta().setNomejogo(resItens.getString("nomejogooferta"));
+//			itemjogoTroca.getJogoTroca().setNomejogo(resItens.getString("nomejogotroca"));
+//			itemjogoTroca.getJogoOferta().setDescricao(resItens.getString("jogoofertadescricao"));
+//			itemjogoTroca.getJogoTroca().setDescricao(resItens.getString("jogotrocadescricao"));
+//			itemjogoTroca.getJogoOferta().setCategoria(resItens.getInt("jogoofertacategoria"));
+//			itemjogoTroca.getJogoTroca().setCategoria(resItens.getInt("jogotrocacategoria"));;
+//			itemjogoTroca.getJogoTroca().setPlataforma(new Plataforma(resItens.getInt("plataformatroca")));
+//			itemjogoTroca.getJogoOferta().setPlataforma(new Plataforma(resItens.getInt("plataformaoferta")));
+//			itemjogoTroca.getJogoTroca().setAno(resItens.getInt("jogotrocaano"));
+//			itemjogoTroca.getJogoOferta().setAno(resItens.getInt("jogoofertaano"));
+//			itemjogoTroca.getJogoTroca().setImagem(resItens.getString("jogotrocaimagem"));
+//			itemjogoTroca.getJogoOferta().setImagem(resItens.getString("jogoofertaimagem"));
 			
 			itemjogoTroca.setIdUsuarioOferta(resItens.getInt("idusuariooferta"));
 			itemjogoTroca.setIdUsuarioTroca(resItens.getInt("idusuariotroca"));

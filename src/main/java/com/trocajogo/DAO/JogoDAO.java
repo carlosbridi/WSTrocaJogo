@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import com.banco.conexao;
 import com.trocajogo.model.Jogo;
 import com.trocajogo.model.TempJogoBusca;
-import com.trocajogo.model.Plataforma.PlataformaDAO;
+import com.trocajogo.model.JogoPlataforma.JogoPlataforma;
+import com.trocajogo.model.JogoPlataforma.JogoPlataformaCRUD;
+import com.trocajogo.model.Plataforma.PlataformaCRUD;
 
 public class JogoDAO {
 
@@ -57,7 +59,7 @@ public class JogoDAO {
 				jogo.setDescricao(res.getString("jogodescricao"));
 				jogo.setCategoria(res.getInt("categoria"));
 				jogo.setAno(res.getInt("ano"));
-				jogo.setPlataforma(PlataformaDAO.buscarPlataforma(res.getInt("idplataforma")));
+				jogo.getPlataforma().add(new JogoPlataforma(jogo.getId(), PlataformaCRUD.buscarPlataforma(res.getInt("idplataforma"))));
 				jogo.setImagem(res.getString("imagem"));
 				
 				jogos.add(jogo);
@@ -100,7 +102,7 @@ public class JogoDAO {
 				jogo.setDescricao(res.getString("jogodescricao"));
 				jogo.setCategoria(res.getInt("categoria"));
 				jogo.setAno(res.getInt("ano"));
-				jogo.setPlataforma(PlataformaDAO.buscarPlataforma(res.getInt("idplataforma")));
+				jogo.getPlataforma().add(new JogoPlataforma(jogo.getId(), PlataformaCRUD.buscarPlataforma(res.getInt("idplataforma"))));
 				jogo.setImagem(res.getString("imagem"));
 			
 			}
@@ -146,8 +148,9 @@ public class JogoDAO {
 		PreparedStatement ps;
 		
 		try {
+			JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
+			
 			ps = conn.prepareStatement(sql);
-		
 			ResultSet res = ps.executeQuery();
 			
 			while(res.next()){
@@ -158,7 +161,11 @@ public class JogoDAO {
 				jogo.setDescricao(res.getString("jogodescricao"));
 				jogo.setCategoria(res.getInt("categoria"));
 				jogo.setAno(res.getInt("ano"));
-				jogo.setPlataforma(PlataformaDAO.buscarPlataforma(res.getInt("idplataforma")));
+				
+				jogo.setPlataforma(jogoPlataformaCRUD.obterJogoPlataforma(jogo.getId()));
+				
+				//jogo.setPlataforma(PlataformaCRUD.buscarPlataforma(res.getInt("idplataforma")));
+				
 				jogo.setImagem(res.getString("imagem"));
 				jogo.setIdUsuarioTroca(res.getInt("codusuario"));
 				jogo.setNomeUsuarioTroca(res.getString("nome"));

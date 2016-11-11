@@ -1,11 +1,12 @@
 package com.trocajogo.resouce;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
@@ -15,6 +16,7 @@ import javax.ws.rs.core.UriInfo;
 
 import com.trocajogo.DAO.JogoUsuarioCRUD;
 import com.trocajogo.defs.TipoDef;
+import com.trocajogo.model.Jogo;
 import com.trocajogo.model.JogoUsuario;
 import com.trocajogo.model.Retorno;
 
@@ -22,16 +24,17 @@ import com.trocajogo.model.Retorno;
 public class JogoColecaoWS {
 
 	@Context
-    UriInfo uriInfo;
+    UriInfo uriIØnfo;
    
     
     @Context
     Request request;	
 	
     @GET
-    @Produces(TipoDef.TEXT_PLAIN)
-    public String respondAsReady() {
-        return "Serviço WEBLocal funcionando!";
+    @Produces(TipoDef.APPLICATION_JSON)
+    public ArrayList<Jogo> obterColecaoJogosUsuario(@QueryParam("idUsuario") int idUsuario) {
+    	JogoUsuarioCRUD jogoCRUD = new JogoUsuarioCRUD();
+    	return jogoCRUD.buscarJogosUsuario(idUsuario);
     }
     
     @POST

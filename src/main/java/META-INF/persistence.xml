@@ -12,6 +12,10 @@
 		<class>com.trocajogo.model.JogoUsuario</class>
 		<class>com.trocajogo.model.Plataforma.Plataforma</class>
 		<class>com.trocajogo.model.JogoImagem</class>
+		<class>com.trocajogo.model.Troca</class>
+		<class>com.trocajogo.model.ItensJogoTroca</class>
+		<class>com.trocajogo.model.JogoPlataforma.JogoPlataforma</class>
+		<class>com.trocajogo.model.ItemTroca</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />

@@ -6,8 +6,12 @@ import org.hibernate.criterion.Restrictions;
 
 import com.banco.HibernateUtil;
 
-public class PlataformaDAO {
+public class PlataformaCRUD {
 
+	public Plataforma criarPlataforma(){
+		return new Plataforma();
+	}
+	
 	public static Plataforma buscarPlataforma(int idPlataforma){
 		Session sessao = HibernateUtil.getSession();
 		Criteria cri = sessao.createCriteria(Plataforma.class).add(Restrictions.eq("id", idPlataforma));

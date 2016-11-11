@@ -28,7 +28,7 @@ public class TrocaConcluida {
 			cmd = conn.prepareStatement(sql);
 			
 			cmd.setInt(1, troca.getJogoTroca().getIdUsuarioTroca());
-			cmd.setInt(2, troca.getJogoTroca().getJogoTroca().getPlataforma().getId());
+			cmd.setInt(2, troca.getJogoTroca().getJogoTrocaPlataforma().getPlataforma().getId());
 			
 			cmd.executeUpdate();
 			
@@ -41,7 +41,8 @@ public class TrocaConcluida {
 			cmd = conn.prepareStatement(sql);
 			
 			cmd.setInt(1, troca.getJogoTroca().getIdUsuarioOferta());
-			cmd.setInt(2, troca.getJogoTroca().getJogoOferta().getPlataforma().getId());
+			
+			//cmd.setInt(2, troca.getJogoTroca().getJogoOferta().getPlataforma().g );
 			
 			cmd.executeUpdate();
 			
@@ -51,8 +52,8 @@ public class TrocaConcluida {
 		}
 		
 		JogoUsuarioCRUD jogoUsuarioCRUD = new JogoUsuarioCRUD();
-		jogoUsuarioCRUD.adicionarJogoUsuario(new JogoUsuario(troca.getJogoTroca().getIdUsuarioTroca(), troca.getJogoTroca().getJogoOferta().getId(), troca.getJogoTroca().getJogoOferta().getPlataforma().getId()));
-		jogoUsuarioCRUD.adicionarJogoUsuario(new JogoUsuario(troca.getJogoTroca().getIdUsuarioOferta(), troca.getJogoTroca().getJogoTroca().getId(), troca.getJogoTroca().getJogoTroca().getPlataforma().getId()));
+		//jogoUsuarioCRUD.adicionarJogoUsuario(new JogoUsuario(troca.getJogoTroca().getIdUsuarioTroca(), troca.getJogoTroca().getJogoOfertaPlataforma().getId(), troca.getJogoTroca().getJogoOfertaPlataforma().getPlataforma().getId()));
+		//jogoUsuarioCRUD.adicionarJogoUsuario(new JogoUsuario(troca.getJogoTroca().getIdUsuarioOferta(), troca.getJogoTroca().getJogoTrocaPlataforma().getId(), troca.getJogoTroca().getJogoTrocaPlataforma().getPlataforma().getId()));
 		
 		return 1;
 				

@@ -25,5 +25,9 @@
 		<mapping class="com.trocajogo.model.Usuario" />
 		<mapping class="com.trocajogo.model.JogoUsuario" />
 		<mapping class="com.trocajogo.model.JogoImagem" />
+		<mapping class="com.trocajogo.model.Troca"/>
+		<mapping class="com.trocajogo.model.ItensJogoTroca"/>
+		<mapping class="com.trocajogo.model.JogoPlataforma.JogoPlataforma"/>
+		<mapping class="com.trocajogo.model.ItemTroca"/>
 	</session-factory>
 </hibernate-configuration>

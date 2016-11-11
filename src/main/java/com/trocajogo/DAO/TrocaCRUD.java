@@ -1,73 +1,47 @@
 package com.trocajogo.DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.text.SimpleDateFormat;
 
-import com.banco.conexao;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import com.banco.HibernateUtil;
 import com.trocajogo.model.StatusTroca;
 import com.trocajogo.model.Troca;
 
 public class TrocaCRUD {
 	
 	
-	public int obterProximoId(){
-		Connection conn = conexao.conectar();
-		PreparedStatement ps;
+	public int persistirTroca(Troca troca){
 		
-		String sql = "SELECT COALESCE(MAX(IDTROCA)+1,1) NEXTID "+
-					   "FROM TROCA "; 
+		Session sessao = HibernateUtil.getSession();
+		sessao.getTransaction().begin();
+		
 		try{
-			ps = conn.prepareStatement(sql);
-			ResultSet res = ps.executeQuery();
-			if(res.next()){
-				return res.getInt("nextID");
+			if (troca.getId() > 0){
+				sessao.merge(troca);
 			}else{
-				return 1;
-			}
-		}catch(SQLException e){
-			e.printStackTrace();
-			return 1;
+				
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				final String stringDate= dateFormat.format(troca.getDataTroca());
+				final java.sql.Date sqlDate=  java.sql.Date.valueOf(stringDate);
+				troca.setDataTroca(sqlDate);
+				troca.setStatusTroca(StatusTroca.TROCA_ANALISE);
+				
+				sessao.persist(troca);
 			
+				sessao.getTransaction().commit();
+			}
+		}catch(Exception e){
+			sessao.getTransaction().rollback();
+			e.printStackTrace();
 		}
-		
+		return 0;
 	}
 	
-	public int inserirTroca(Troca troca){
-		int resultado = 0;
-		Connection conn = conexao.conectar();
-		PreparedStatement ps;
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		final String stringDate= dateFormat.format(troca.getDataTroca());
-		final java.sql.Date sqlDate=  java.sql.Date.valueOf(stringDate);
-        
-        String sql = "INSERT INTO TROCA (IDTROCA, DATATROCA, STATUS) VALUES (?, to_date(?, 'yyyy-MM-dd'), ?)";
-       
-        troca.setId(this.obterProximoId());
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, troca.getId());
-			ps.setDate(2, sqlDate);
-			ps.setString(3, troca.getStatusTroca().toString());
-			resultado = ps.executeUpdate();
-			
-			if (resultado > 0){
-				TrocaItensCRUD trocaItensCrud = new TrocaItensCRUD();
-				resultado = trocaItensCrud.inserirItemTroca(troca.getId(), troca.getJogoTroca());
-			}else{
-				resultado = 0;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			resultado = 0;
-		}
-		
-		return resultado;
-		
-	}
+	
 	
 	public int atualizarStatusTroca(int idTroca, StatusTroca status){
 		
@@ -75,25 +49,30 @@ public class TrocaCRUD {
 			TrocaConcluida trocaConcluida = new TrocaConcluida(idTroca);
 			trocaConcluida.efetuarTroca();
 		}
-		
-		Connection conn = conexao.conectar();
-		PreparedStatement cmd;
-		String sql = "UPDATE TROCA SET STATUS = ? WHERE IDTROCA = ? ";
-		try {
-			cmd = conn.prepareStatement(sql);
-			
-			cmd.setString(1, status.toString());
-			cmd.setInt(2, idTroca);
-			
-			int resultado =  cmd.executeUpdate();
-			
-			return resultado;
-		} catch (SQLException e) {
+
+		Session sessao = HibernateUtil.getSession();
+		sessao.getTransaction().begin();
+		try{
+			Troca troca = buscarTroca(idTroca);
+			troca.setStatusTroca(status);
+			sessao.merge(troca);
+			sessao.getTransaction().commit();
+			return 1;
+		}catch(Exception e){
 			e.printStackTrace();
+			sessao.getTransaction().rollback();
 			return 0;
 		}
 	}
 	
+	
+	public Troca buscarTroca(int idTroca){
+		Session session = HibernateUtil.getSession();
+		Criteria cri = session.createCriteria(Troca.class)
+							  .add(Restrictions.eq("idTroca", idTroca));
+		
+		return (Troca) cri.list().get(0);
+	}
 	
 	
 }

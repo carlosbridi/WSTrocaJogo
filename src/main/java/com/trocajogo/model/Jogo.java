@@ -1,15 +1,19 @@
 package com.trocajogo.model;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.trocajogo.model.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.model.Plataforma.Plataforma;
 
 @XmlRootElement(name = "Jogo")
@@ -28,9 +32,8 @@ public class Jogo {
 	private int ano;
 	private String imagem;
 	
-	
-	@OneToOne(mappedBy = "jogo", cascade = CascadeType.ALL)
-	private Plataforma plataforma; 
+	@OneToMany(mappedBy = "jogoPlataforma", cascade = CascadeType.ALL)
+	private List<JogoPlataforma> plataforma = new ArrayList<JogoPlataforma>(); 
 	
 	public Jogo(){
 		
@@ -44,7 +47,6 @@ public class Jogo {
 		this.descricao = descricao;
 		this.categoria = categoria;
 		this.ano = ano;
-		this.plataforma = plataforma;
 		this.imagem = imagem;
 	}
 	
@@ -78,17 +80,21 @@ public class Jogo {
 	public void setAno(int ano) {
 		this.ano = ano;
 	}
-	public Plataforma getPlataforma() {
-		return plataforma;
-	}
-	public void setPlataforma(Plataforma plataforma) {
-		this.plataforma = plataforma;
-	}
+	
 	public String getImagem() {
 		return imagem;
 	}
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
+
+	public List<JogoPlataforma> getPlataforma() {
+		return plataforma;
+	}
+
+	public void setPlataforma(List<JogoPlataforma> plataforma) {
+		this.plataforma = plataforma;
+	}
+
 	
 }

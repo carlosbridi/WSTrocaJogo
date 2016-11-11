@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import com.trocajogo.model.Jogo;
+import com.trocajogo.model.JogoPlataforma.JogoPlataforma;
 
 @XmlRootElement(name = "Plataforma")
 @Entity
@@ -25,10 +26,23 @@ public class Plataforma {
 	@JoinColumn(name = "id")
 	private Jogo jogo;
 	
+	@NotNull
+	@OneToOne
+	@JoinColumn(name = "id")
+	private JogoPlataforma jogoPlataforma;
+	
+	
+	
 	public Plataforma(){
 		
 	}
 	
+	public Plataforma(int id, String descricao) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+	}
+
 	public Plataforma(int idPlataforma){
 		super();
 		this.id = idPlataforma;

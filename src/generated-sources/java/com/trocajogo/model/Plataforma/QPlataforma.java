@@ -28,6 +28,8 @@ public class QPlataforma extends EntityPathBase<Plataforma> {
 
     public final com.trocajogo.model.QJogo jogo;
 
+    public final com.trocajogo.model.JogoPlataforma.QJogoPlataforma jogoPlataforma;
+
     public QPlataforma(String variable) {
         this(Plataforma.class, forVariable(variable), INITS);
     }
@@ -46,7 +48,8 @@ public class QPlataforma extends EntityPathBase<Plataforma> {
 
     public QPlataforma(Class<? extends Plataforma> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.jogo = inits.isInitialized("jogo") ? new com.trocajogo.model.QJogo(forProperty("jogo"), inits.get("jogo")) : null;
+        this.jogo = inits.isInitialized("jogo") ? new com.trocajogo.model.QJogo(forProperty("jogo")) : null;
+        this.jogoPlataforma = inits.isInitialized("jogoPlataforma") ? new com.trocajogo.model.JogoPlataforma.QJogoPlataforma(forProperty("jogoPlataforma"), inits.get("jogoPlataforma")) : null;
     }
 
 }

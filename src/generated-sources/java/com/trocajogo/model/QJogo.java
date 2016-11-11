@@ -18,8 +18,6 @@ public class QJogo extends EntityPathBase<Jogo> {
 
     private static final long serialVersionUID = 1199695089L;
 
-    private static final PathInits INITS = PathInits.DIRECT2;
-
     public static final QJogo jogo = new QJogo("jogo");
 
     public final NumberPath<Integer> ano = createNumber("ano", Integer.class);
@@ -34,27 +32,18 @@ public class QJogo extends EntityPathBase<Jogo> {
 
     public final StringPath nomejogo = createString("nomejogo");
 
-    public final com.trocajogo.model.Plataforma.QPlataforma plataforma;
+    public final ListPath<com.trocajogo.model.JogoPlataforma.JogoPlataforma, com.trocajogo.model.JogoPlataforma.QJogoPlataforma> plataforma = this.<com.trocajogo.model.JogoPlataforma.JogoPlataforma, com.trocajogo.model.JogoPlataforma.QJogoPlataforma>createList("plataforma", com.trocajogo.model.JogoPlataforma.JogoPlataforma.class, com.trocajogo.model.JogoPlataforma.QJogoPlataforma.class, PathInits.DIRECT2);
 
     public QJogo(String variable) {
-        this(Jogo.class, forVariable(variable), INITS);
+        super(Jogo.class, forVariable(variable));
     }
 
     public QJogo(Path<? extends Jogo> path) {
-        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
+        super(path.getType(), path.getMetadata());
     }
 
     public QJogo(PathMetadata metadata) {
-        this(metadata, PathInits.getFor(metadata, INITS));
-    }
-
-    public QJogo(PathMetadata metadata, PathInits inits) {
-        this(Jogo.class, metadata, inits);
-    }
-
-    public QJogo(Class<? extends Jogo> type, PathMetadata metadata, PathInits inits) {
-        super(type, metadata, inits);
-        this.plataforma = inits.isInitialized("plataforma") ? new com.trocajogo.model.Plataforma.QPlataforma(forProperty("plataforma"), inits.get("plataforma")) : null;
+        super(Jogo.class, metadata);
     }
 
 }

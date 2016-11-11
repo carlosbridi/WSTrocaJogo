@@ -12,6 +12,7 @@ import com.banco.HibernateUtil;
 import com.banco.conexao;
 import com.trocajogo.model.Jogo;
 import com.trocajogo.model.JogoUsuario;
+import com.trocajogo.model.JogoPlataforma.JogoPlataformaCRUD;
 import com.trocajogo.model.Plataforma.Plataforma;
 
 public class JogoUsuarioCRUD {
@@ -81,18 +82,14 @@ public class JogoUsuarioCRUD {
 	
 	public ArrayList<Jogo> buscarJogosUsuario(int idUsuario){
 		
+		JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
+		
 		//Rever parte do join usando criteria
-		String sql = "SELECT jogo.ID, "+
-			       "jogo.NOMEJOGO, "+
-			       "jogo.DESCRICAO, "+
-			       "jogo.CATEGORIA, "+
-			       "jogo.IMAGEM, jogo.ano, jogo.imagem, "+
-			       "JOGOUSUARIO.idplataforma  as plataforma "+
-			"FROM JOGO jogo, JOGOUSUARIO, JOGOPLATAFORMA, plataforma "+
-			"WHERE JOGO.ID = JOGOUSUARIO.IDJOGO "+
-			  "AND JOGO.ID = JOGOPLATAFORMA.IDJOGO "+
-			  "AND plataforma.id = jogoplataforma.idplataforma "+
-			  "AND JOGOUSUARIO.IDUSUARIO = ?"; 
+		String sql = "SELECT DISTINCT JOGO.ID, JOGO.NOMEJOGO, JOGO.DESCRICAO, "+
+			                "JOGO.CATEGORIA, JOGO.IMAGEM, JOGO.ANO, JOGO.IMAGEM "+
+			           "FROM JOGO JOGO, JOGOUSUARIO "+
+					  "WHERE JOGO.ID = JOGOUSUARIO.IDJOGO "+
+					    "AND JOGOUSUARIO.IDUSUARIO = ?"; 
 		Connection conn = conexao.conectar();
 		PreparedStatement ps;
 		
@@ -110,7 +107,7 @@ public class JogoUsuarioCRUD {
 				jogo.setDescricao(res.getString("descricao"));
 				jogo.setCategoria(res.getInt("categoria"));
 				jogo.setAno(res.getInt("ano"));
-				jogo.setPlataforma(new Plataforma(res.getInt("plataforma")));
+				jogo.setPlataforma(jogoPlataformaCRUD.obterJogoPlataformaUsuario(jogo.getId()));
 				jogo.setImagem(res.getString("imagem"));
 				
 				jogos.add(jogo);
@@ -125,18 +122,14 @@ public class JogoUsuarioCRUD {
 	
 	public ArrayList<Jogo> buscarJogosUsuarioInteresse(int idUsuario){
 		
+		JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
+		
 		//Rever parte do join usando criteria
-		String sql = "SELECT jogo.ID, "+
-			       "jogo.NOMEJOGO, "+
-			       "jogo.DESCRICAO, "+
-			       "jogo.CATEGORIA, "+
-			       "jogo.IMAGEM, jogo.ano, jogo.imagem, "+
-			       "JOGOUSUARIO.idplataforma  as plataforma "+
-			"FROM JOGO jogo, JOGOUSUARIO, JOGOPLATAFORMA, plataforma "+
+		String sql = "SELECT JOGO.ID, JOGO.NOMEJOGO, JOGO.DESCRICAO, "+
+			       "JOGO.CATEGORIA, JOGO.IMAGEM, JOGO.ANO, JOGO.IMAGEM "+
+			"FROM JOGO JOGO, JOGOUSUARIO, "+
 			"WHERE JOGO.ID = JOGOUSUARIO.IDJOGO "+
-			  "AND JOGO.ID = JOGOPLATAFORMA.IDJOGO "+
-			  "AND plataforma.id = jogoplataforma.idplataforma "+
-			  "AND JOGOUSUARIO.IDUSUARIO = ? AND INTERESSE = true "; 
+			  "AND JOGOUSUARIO.IDUSUARIO = ? AND JOGOUSUARIO.INTERESSE = true "; 
 		Connection conn = conexao.conectar();
 		PreparedStatement ps;
 		
@@ -154,7 +147,7 @@ public class JogoUsuarioCRUD {
 				jogo.setDescricao(res.getString("descricao"));
 				jogo.setCategoria(res.getInt("categoria"));
 				jogo.setAno(res.getInt("ano"));
-				jogo.setPlataforma(new Plataforma(res.getInt("plataforma")));
+				jogo.setPlataforma(jogoPlataformaCRUD.obterJogoPlataformaUsuario(jogo.getId()) );
 				jogo.setImagem(res.getString("imagem"));
 				
 				jogos.add(jogo);

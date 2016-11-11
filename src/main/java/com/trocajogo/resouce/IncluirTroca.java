@@ -16,10 +16,12 @@ import javax.ws.rs.core.UriInfo;
 
 import com.trocajogo.DAO.TrocaCRUD;
 import com.trocajogo.defs.TipoDef;
+import com.trocajogo.model.ItemTroca;
 import com.trocajogo.model.ItensJogoTroca;
 import com.trocajogo.model.Retorno;
-import com.trocajogo.model.StatusTroca;
 import com.trocajogo.model.Troca;
+import com.trocajogo.model.JogoPlataforma.JogoPlataforma;
+import com.trocajogo.model.JogoPlataforma.JogoPlataformaCRUD;
 import com.trocajogo.model.Plataforma.Plataforma;
 
 @Path("/IncluirTroca")
@@ -44,6 +46,7 @@ public class IncluirTroca {
     public Retorno postTroca(MultivaluedMap<String, String> trocaParams) throws ParseException {
     	
     	TrocaCRUD trocaCrud = new TrocaCRUD();
+    	JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
     	
     	Troca troca = new Troca();
     	troca.setId(Integer.valueOf(trocaParams.getFirst("idTroca")));
@@ -53,25 +56,17 @@ public class IncluirTroca {
     	
     	troca.setDataTroca(date);
 
+    	ItemTroca itemTroca = new ItemTroca();
+    	itemTroca.setTroca(troca);
+    	itemTroca.setIdUsuarioOferta(Integer.valueOf(trocaParams.getFirst("idUsuarioOferta")));
+    	itemTroca.setIdUsuarioTroca(Integer.valueOf(trocaParams.getFirst("idUsuarioTroca")));
+    	itemTroca.setIdPlataformaJogoOferta(jogoPlataformaCRUD.obterIdJogoPlataforma(Integer.valueOf(trocaParams.getFirst("idJogoOferta")), Integer.valueOf(trocaParams.getFirst("idPlataformaOferta"))));
+    	itemTroca.setIdPlataformaJogoTroca(jogoPlataformaCRUD.obterIdJogoPlataforma(Integer.valueOf(trocaParams.getFirst("idJogoTroca")), Integer.valueOf(trocaParams.getFirst("idPlataformaTroca"))));
     	
-    	
-    	ItensJogoTroca itensJogoTroca = new ItensJogoTroca();
-    	itensJogoTroca.getJogoOferta().setId(Integer.valueOf(trocaParams.getFirst("idJogoOferta")));
-    	itensJogoTroca.getJogoTroca().setId(Integer.valueOf(trocaParams.getFirst("idJogoTroca")));
-    	
-    	itensJogoTroca.setNomeUsuarioTroca(trocaParams.getFirst("nomeusuariotroca"));
-    	itensJogoTroca.setNomeUsuarioOferta(trocaParams.getFirst("nomeusuariooferta"));
-    	
-    	itensJogoTroca.setIdUsuarioOferta(Integer.valueOf(trocaParams.getFirst("idUsuarioOferta")));
-    	itensJogoTroca.setIdUsuarioTroca(Integer.valueOf(trocaParams.getFirst("idUsuarioTroca")));
-    	
-    	itensJogoTroca.getJogoOferta().setPlataforma(new Plataforma(Integer.valueOf(trocaParams.getFirst("plataformaoferta"))));
-    	itensJogoTroca.getJogoTroca().setPlataforma(new Plataforma(Integer.valueOf(trocaParams.getFirst("plataformatroca"))));
-    	
-    	troca.setJogoTroca(itensJogoTroca);
+    	troca.setItemTroca(itemTroca);
     	
     	try{
-    		if (trocaCrud.inserirTroca(troca) > 0){
+    		if (trocaCrud.persistirTroca(troca) > 0){
     			return new Retorno(1, "Troca incluída com sucesso");
     		}else{
     			return new Retorno(999, "Falha ao incluir troca remotamente, tente novamente mais tarde!");
