@@ -14,6 +14,11 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import com.banco.HibernateUtil;
 import com.trocajogo.DAO.TrocaCRUD;
 import com.trocajogo.defs.TipoDef;
 import com.trocajogo.model.ItemTroca;
@@ -43,7 +48,7 @@ public class IncluirTroca {
     @POST
     @Consumes(TipoDef.APPLICATION_FORM_URLENCODED)
     @Produces(TipoDef.APPLICATION_JSON)
-    public Retorno postTroca(MultivaluedMap<String, String> trocaParams) throws ParseException {
+    public Retorno postTroca(MultivaluedMap<String, String> trocaParams) throws ParseException, Exception {
     	
     	TrocaCRUD trocaCrud = new TrocaCRUD();
     	JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
@@ -57,22 +62,41 @@ public class IncluirTroca {
     	troca.setDataTroca(date);
 
     	ItemTroca itemTroca = new ItemTroca();
-    	itemTroca.setTroca(troca);
     	itemTroca.setIdUsuarioOferta(Integer.valueOf(trocaParams.getFirst("idUsuarioOferta")));
     	itemTroca.setIdUsuarioTroca(Integer.valueOf(trocaParams.getFirst("idUsuarioTroca")));
-    	itemTroca.setIdPlataformaJogoOferta(jogoPlataformaCRUD.obterIdJogoPlataforma(Integer.valueOf(trocaParams.getFirst("idJogoOferta")), Integer.valueOf(trocaParams.getFirst("idPlataformaOferta"))));
-    	itemTroca.setIdPlataformaJogoTroca(jogoPlataformaCRUD.obterIdJogoPlataforma(Integer.valueOf(trocaParams.getFirst("idJogoTroca")), Integer.valueOf(trocaParams.getFirst("idPlataformaTroca"))));
     	
+    	JogoPlataforma jogoPlataformaOferta = jogoPlataformaCRUD.obterJogoPlataforma(Integer.valueOf(trocaParams.getFirst("idJogoPlataformaOferta")));
+    	itemTroca.setJogoPlataformaOferta(jogoPlataformaOferta);
+    	//jogoPlataformaOferta.setItemOferta(itemTroca);
+    	
+    	JogoPlataforma jogoPlataformaTroca = jogoPlataformaCRUD.obterJogoPlataforma(Integer.valueOf(trocaParams.getFirst("idJogoPlataformaTroca"))); 
+    	itemTroca.setJogoPlataformaTroca(jogoPlataformaTroca);
+    	//jogoPlataformaTroca.setItemTroca(itemTroca);
+    	
+    	
+    	
+    	itemTroca.setTroca(troca);
     	troca.setItemTroca(itemTroca);
     	
     	try{
     		if (trocaCrud.persistirTroca(troca) > 0){
+    			Session sessao2 = HibernateUtil.getSession();
+				Criteria cri = sessao2.createCriteria(Troca.class);
+				cri.add(Restrictions.eq("id", troca.getId()));
+				
+				Troca tc1;
+				if (cri.list().size() > 0){
+				  tc1 = (Troca) cri.list().get(0);
+				  	
+				  System.out.println(tc1.getItemTroca().getJogoPlataformaOferta().getJogoPlataforma().getDescricao());
+				  System.out.println(tc1.getItemTroca().getJogoPlataformaTroca().getJogoPlataforma().getDescricao());
+				}
     			return new Retorno(1, "Troca incluída com sucesso");
     		}else{
     			return new Retorno(999, "Falha ao incluir troca remotamente, tente novamente mais tarde!");
     		}
     	}catch(Exception e){
-    		e.printStackTrace();
+    		e.printStackTrace(); 
     		return new Retorno (998, "Ocorreu um erro ao tentar incluir uma troca, tente novamente mais tarde!");
     	}
     }

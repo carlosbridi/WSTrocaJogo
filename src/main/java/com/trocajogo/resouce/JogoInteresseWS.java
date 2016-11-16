@@ -30,11 +30,10 @@ public class JogoInteresseWS {
     Request request;	
 	
     @GET
-    @Consumes(TipoDef.APPLICATION_FORM_URLENCODED)
     @Produces(TipoDef.APPLICATION_JSON)
-    public ArrayList<Jogo> obterColecaoJogosUsuario(MultivaluedMap<String, String> usuarioParams) {
+    public ArrayList<Jogo> obterColecaoJogosUsuario(@QueryParam("idUsuario") int idUsuario) {
     	JogoUsuarioCRUD jogoCRUD = new JogoUsuarioCRUD();
-    	return jogoCRUD.buscarJogosUsuarioInteresse(Integer.valueOf(usuarioParams.getFirst("idUsuario")));
+    	return jogoCRUD.buscarJogosUsuarioInteresse(idUsuario);
     }
     
     @POST

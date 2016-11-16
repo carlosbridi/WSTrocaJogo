@@ -13,7 +13,6 @@ import com.banco.conexao;
 import com.trocajogo.model.Jogo;
 import com.trocajogo.model.JogoUsuario;
 import com.trocajogo.model.JogoPlataforma.JogoPlataformaCRUD;
-import com.trocajogo.model.Plataforma.Plataforma;
 
 public class JogoUsuarioCRUD {
 
@@ -107,7 +106,7 @@ public class JogoUsuarioCRUD {
 				jogo.setDescricao(res.getString("descricao"));
 				jogo.setCategoria(res.getInt("categoria"));
 				jogo.setAno(res.getInt("ano"));
-				jogo.setPlataforma(jogoPlataformaCRUD.obterJogoPlataformaUsuario(jogo.getId()));
+				jogo.setPlataforma(jogoPlataformaCRUD.obterListaPlataformaJogo(jogo.getId()));
 				jogo.setImagem(res.getString("imagem"));
 				
 				jogos.add(jogo);
@@ -147,7 +146,7 @@ public class JogoUsuarioCRUD {
 				jogo.setDescricao(res.getString("descricao"));
 				jogo.setCategoria(res.getInt("categoria"));
 				jogo.setAno(res.getInt("ano"));
-				jogo.setPlataforma(jogoPlataformaCRUD.obterJogoPlataformaUsuario(jogo.getId()) );
+				jogo.setPlataforma(jogoPlataformaCRUD.obterListaPlataformaJogo(jogo.getId()) );
 				jogo.setImagem(res.getString("imagem"));
 				
 				jogos.add(jogo);

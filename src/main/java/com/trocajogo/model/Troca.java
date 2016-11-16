@@ -38,9 +38,9 @@ public class Troca {
     @Column(name="datatroca")
     private Date dataTroca; // Data da troca
     
-    @Column(name="status")
-    private StatusTroca statusTroca; // Status da Troca (Analise, Cancelada, Finalizada)
-    
+//    @Column(name="status")
+//    private StatusTroca statusTroca; // Status da Troca (Analise, Cancelada, Finalizada)
+//    
     public int getId() {
 		return id;
 	}
@@ -81,13 +81,13 @@ public class Troca {
 		this.dataTroca = dataTroca;
 	}
 	
-	public StatusTroca getStatusTroca() {
-		return statusTroca;
-	}
-	
-	public void setStatusTroca(StatusTroca statusTroca) {
-		this.statusTroca = statusTroca;
-	}
+//	public StatusTroca getStatusTroca() {
+//		return statusTroca;
+//	}
+//	
+//	public void setStatusTroca(StatusTroca statusTroca) {
+//		this.statusTroca = statusTroca;
+//	}
 	
 	public ItemTroca getItemTroca() {
 		return itemTroca;

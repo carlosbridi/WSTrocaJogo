@@ -24,8 +24,6 @@ public class QJogoPlataforma extends EntityPathBase<JogoPlataforma> {
 
     public final NumberPath<Integer> id = createNumber("id", Integer.class);
 
-    public final NumberPath<Integer> idJogo = createNumber("idJogo", Integer.class);
-
     public final com.trocajogo.model.QJogo jogoPlataforma;
 
     public final com.trocajogo.model.Plataforma.QPlataforma plataforma;

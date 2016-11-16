@@ -28,17 +28,19 @@ public class TrocaCRUD {
 				final String stringDate= dateFormat.format(troca.getDataTroca());
 				final java.sql.Date sqlDate=  java.sql.Date.valueOf(stringDate);
 				troca.setDataTroca(sqlDate);
-				troca.setStatusTroca(StatusTroca.TROCA_ANALISE);
+				//troca.setStatusTroca(StatusTroca.TROCA_ANALISE);
 				
 				sessao.persist(troca);
 			
 				sessao.getTransaction().commit();
+				
+				
 			}
 		}catch(Exception e){
 			sessao.getTransaction().rollback();
 			e.printStackTrace();
 		}
-		return 0;
+		return troca.getId();
 	}
 	
 	
@@ -54,7 +56,7 @@ public class TrocaCRUD {
 		sessao.getTransaction().begin();
 		try{
 			Troca troca = buscarTroca(idTroca);
-			troca.setStatusTroca(status);
+			//stroca.setStatusTroca(status);
 			sessao.merge(troca);
 			sessao.getTransaction().commit();
 			return 1;

@@ -16,8 +16,8 @@ import com.banco.conexao;
 import com.trocajogo.model.Plataforma.Plataforma;
 
 public class JogoPlataformaCRUD {
-
-	public List<JogoPlataforma> obterJogoPlataforma(final int idJogo){
+	
+	public List<JogoPlataforma> obterListaPlataformaJogo(final int idJogo){
 		List<JogoPlataforma> listaJogoPlataforma = new ArrayList<JogoPlataforma>();
 		Connection conn = conexao.conectar();
 		PreparedStatement ps;
@@ -72,15 +72,30 @@ public class JogoPlataformaCRUD {
 		return listaJogoPlataforma;
 	}
 	
-	public int obterIdJogoPlataforma(final int idJogo, final int idPlataforma){
+	public JogoPlataforma obterJogoPlataforma(final int idJogoPlataforma) throws Exception{
+		Session sessao = HibernateUtil.getSession();
+		Criteria cri = sessao.createCriteria(JogoPlataforma.class);
+		cri.add(Restrictions.eq("id", idJogoPlataforma));
+		
+		if (cri.list().size() > 0){
+			return (JogoPlataforma) cri.list().get(0);
+		}else{
+			throw new Exception("Não encontrado!");
+		}
+	}
+	
+	public int obterIdJogoPlataforma(final int idJogo, final int idPlataforma) throws Exception{
 		Session sessao = HibernateUtil.getSession();
 		
  		Criteria criteria = sessao.createCriteria(JogoPlataforma.class)
 				                  .add(Restrictions.eq("idJogo", idJogo))
 				                  .add(Restrictions.eq("plataforma.id", idPlataforma));
  		
-		
-		return ((JogoPlataforma) criteria.list().get(0)).getId();
+ 		if (criteria.list().size() > 0){
+ 			return ((JogoPlataforma) criteria.list().get(0)).getId();
+ 		}else{
+ 				throw new Exception ("Plataforma do jogo não encontrada");
+		}
 		
 	}
 	

@@ -32,8 +32,6 @@ public class QTroca extends EntityPathBase<Troca> {
 
     public final QItemTroca itemTroca;
 
-    public final EnumPath<StatusTroca> statusTroca = createEnum("statusTroca", StatusTroca.class);
-
     public QTroca(String variable) {
         this(Troca.class, forVariable(variable), INITS);
     }

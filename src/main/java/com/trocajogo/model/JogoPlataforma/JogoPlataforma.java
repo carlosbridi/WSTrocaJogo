@@ -9,7 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.trocajogo.model.ItemTroca;
 import com.trocajogo.model.Jogo;
 import com.trocajogo.model.Plataforma.Plataforma;
 
@@ -23,10 +25,8 @@ public class JogoPlataforma {
 	@Column(name = "jogoplataforma_id")
 	private int id;
 	
-	@Column(name = "idjogo")
-	private int idJogo;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
+	@JoinColumn(name = "idjogo")
 	private Jogo jogoPlataforma;
 	
 	@OneToOne
@@ -38,7 +38,7 @@ public class JogoPlataforma {
 
 	public JogoPlataforma(int idJogo, Plataforma plataforma) {
 		super();
-		this.idJogo = idJogo;
+		//this.idJogo = idJogo;
 		this.plataforma = plataforma;
 	}
 
@@ -50,13 +50,7 @@ public class JogoPlataforma {
 		this.id = id;
 	}
 
-	public int getIdJogo() {
-		return idJogo;
-	}
-
-	public void setIdJogo(int idJogo) {
-		this.idJogo = idJogo;
-	}
+	
 
 	public Plataforma getPlataforma() {
 		return plataforma;
@@ -65,5 +59,14 @@ public class JogoPlataforma {
 	public void setPlataforma(Plataforma plataforma) {
 		this.plataforma = plataforma;
 	}
+
+	public Jogo getJogoPlataforma() {
+		return jogoPlataforma;
+	}
+
+	public void setJogoPlataforma(Jogo jogoPlataforma) {
+		this.jogoPlataforma = jogoPlataforma;
+	}
+
 	
 }
