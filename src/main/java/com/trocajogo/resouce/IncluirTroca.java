@@ -24,6 +24,7 @@ import com.trocajogo.defs.TipoDef;
 import com.trocajogo.model.ItemTroca;
 import com.trocajogo.model.ItensJogoTroca;
 import com.trocajogo.model.Retorno;
+import com.trocajogo.model.StatusTroca;
 import com.trocajogo.model.Troca;
 import com.trocajogo.model.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.model.JogoPlataforma.JogoPlataformaCRUD;
@@ -58,6 +59,7 @@ public class IncluirTroca {
     
     	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     	java.util.Date date = dateFormat.parse(trocaParams.getFirst("dataTroca"));
+    	//troca.setStatusTroca(StatusTroca.TROCA_ANALISE);
     	
     	troca.setDataTroca(date);
 
@@ -74,7 +76,7 @@ public class IncluirTroca {
     	//jogoPlataformaTroca.setItemTroca(itemTroca);
     	
     	
-    	
+    	troca.setStatusTroca(StatusTroca.TROCA_ANALISE);
     	itemTroca.setTroca(troca);
     	troca.setItemTroca(itemTroca);
     	
@@ -88,8 +90,8 @@ public class IncluirTroca {
 				if (cri.list().size() > 0){
 				  tc1 = (Troca) cri.list().get(0);
 				  	
-				  System.out.println(tc1.getItemTroca().getJogoPlataformaOferta().getJogoPlataforma().getDescricao());
-				  System.out.println(tc1.getItemTroca().getJogoPlataformaTroca().getJogoPlataforma().getDescricao());
+				  System.out.println(tc1.getItemTroca().getJogoPlataformaOferta().getJogoPlataforma().getNomejogo());
+				  System.out.println(tc1.getItemTroca().getJogoPlataformaTroca().getJogoPlataforma().getNomejogo());
 				}
     			return new Retorno(1, "Troca incluída com sucesso");
     		}else{

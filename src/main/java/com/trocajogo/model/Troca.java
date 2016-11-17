@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.eclipse.persistence.annotations.Converter;
 
 
 @XmlRootElement(name = "Troca")
@@ -38,9 +42,9 @@ public class Troca {
     @Column(name="datatroca")
     private Date dataTroca; // Data da troca
     
-//    @Column(name="status")
-//    private StatusTroca statusTroca; // Status da Troca (Analise, Cancelada, Finalizada)
-//    
+    @Column(name="status")
+    private StatusTroca statusTroca; // Status da Troca (Analise, Cancelada, Finalizada)
+   
     public int getId() {
 		return id;
 	}
@@ -81,13 +85,13 @@ public class Troca {
 		this.dataTroca = dataTroca;
 	}
 	
-//	public StatusTroca getStatusTroca() {
-//		return statusTroca;
-//	}
-//	
-//	public void setStatusTroca(StatusTroca statusTroca) {
-//		this.statusTroca = statusTroca;
-//	}
+	public StatusTroca getStatusTroca() {
+		return statusTroca;
+	}
+	
+	public void setStatusTroca(StatusTroca statusTroca) {
+		this.statusTroca = statusTroca;
+	}
 	
 	public ItemTroca getItemTroca() {
 		return itemTroca;

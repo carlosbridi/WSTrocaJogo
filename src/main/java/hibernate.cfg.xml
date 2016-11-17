@@ -29,5 +29,6 @@
 		<mapping class="com.trocajogo.model.ItensJogoTroca"/>
 		<mapping class="com.trocajogo.model.JogoPlataforma.JogoPlataforma"/>
 		<mapping class="com.trocajogo.model.ItemTroca"/>
+		<mapping class="com.trocajogo.model.StatusTrocaConverter"/>
 	</session-factory>
 </hibernate-configuration>
