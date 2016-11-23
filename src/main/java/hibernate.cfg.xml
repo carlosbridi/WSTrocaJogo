@@ -20,14 +20,15 @@
 		<property name="hibernate.event.merge.entity_copy_observer">allow</property>
 	
 		
-		<mapping class="com.trocajogo.model.Jogo" />
-		<mapping class="com.trocajogo.model.Plataforma.Plataforma" />
-		<mapping class="com.trocajogo.model.Usuario" />
-		<mapping class="com.trocajogo.model.JogoUsuario" />
-		<mapping class="com.trocajogo.model.JogoImagem" />
+		<mapping class="com.trocajogo.Jogo.Jogo" />
+		<mapping class="com.trocajogo.Jogo.JogoUsuario.JogoUsuario" />
+		<mapping class="com.trocajogo.Jogo.JogoImagem.JogoImagem" />
+		<mapping class="com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma"/>
+		
+		<mapping class="com.trocajogo.Plataforma.Plataforma" />
+		<mapping class="com.trocajogo.Usuario.Usuario" />
 		<mapping class="com.trocajogo.model.Troca"/>
 		<mapping class="com.trocajogo.model.ItensJogoTroca"/>
-		<mapping class="com.trocajogo.model.JogoPlataforma.JogoPlataforma"/>
 		<mapping class="com.trocajogo.model.ItemTroca"/>
 		<mapping class="com.trocajogo.model.StatusTrocaConverter"/>
 	</session-factory>

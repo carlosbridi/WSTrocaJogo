@@ -12,7 +12,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.trocajogo.model.JogoPlataforma.JogoPlataforma;
+import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 
 @SequenceGenerator(name = "itemtrocaid_seq", sequenceName = "itemtrocaid_seq", allocationSize = 1, initialValue = 1)
 

@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.banco.conexao;
+import com.trocajogo.Plataforma.Plataforma;
 import com.trocajogo.model.ItensJogoTroca;
 import com.trocajogo.model.Troca;
-import com.trocajogo.model.Plataforma.Plataforma;
 
 public class TrocaDAO {
 	

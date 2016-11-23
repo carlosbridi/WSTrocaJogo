@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.banco.*;
+import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioCRUD;
 import com.trocajogo.model.*;
 
 public class TrocaConcluida {

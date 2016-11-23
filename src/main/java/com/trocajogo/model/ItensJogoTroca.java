@@ -12,8 +12,9 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.trocajogo.model.JogoPlataforma.JogoPlataforma;
-import com.trocajogo.model.Plataforma.Plataforma;
+import com.trocajogo.Jogo.Jogo;
+import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
+import com.trocajogo.Plataforma.Plataforma;
 
 @XmlRootElement(name = "ItensJogoTroca")
 @SequenceGenerator(name = "itemtrocaid_seq", sequenceName = "itemtrocaid_seq", allocationSize = 1, initialValue = 1)
