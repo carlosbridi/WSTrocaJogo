@@ -51,30 +51,34 @@ public class JogoUsuario {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public JogoUsuario setId(int id) {
 		this.id = id;
+		return this;
 	}
 	public int getIdUsuario() {
 		return idUsuario;
 	}
-	public void setIdUsuario(int idUsuario) {
+	public JogoUsuario setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
+		return this;
 	}
 	
 	public boolean isInteresse() {
 		return interesse;
 	}
 
-	public void setInteresse(boolean interesse) {
+	public JogoUsuario setInteresse(boolean interesse) {
 		this.interesse = interesse;
+		return this;
 	}
 
 	public JogoPlataforma getJogoPlataforma() {
 		return jogoPlataforma;
 	}
 
-	public void setJogoPlataforma(JogoPlataforma jogoPlataforma) {
+	public JogoUsuario setJogoPlataforma(JogoPlataforma jogoPlataforma) {
 		this.jogoPlataforma = jogoPlataforma;
+		return this;
 	}
 	
 }

@@ -65,5 +65,9 @@ public class QUsuario extends EntityPathBase<Usuario> {
         return Usuario.equalsNomeUsuarioCadastrado(this, usuario);
     }
 
+    public com.querydsl.core.types.Predicate loginUsuario(String emailUsuario, String senhaUsuario) {
+        return Usuario.loginUsuario(this, emailUsuario, senhaUsuario);
+    }
+
 }
 

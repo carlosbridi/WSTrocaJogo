@@ -13,7 +13,6 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
 import com.trocajogo.Jogo.JogoDAO;
-import com.trocajogo.Jogo.JogoUsuario.JogoUsuario;
 import com.trocajogo.Jogo.TempJogoBusca.TempJogoBuscaDTO;
 import com.trocajogo.defs.TipoDef;
 

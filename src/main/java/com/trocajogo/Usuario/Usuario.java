@@ -79,7 +79,15 @@ public class Usuario {
 			   .and(qUsuario.nomeUsuario.eq(usuario.getEmail()));
 		return builder.getValue();
 	}
-
+	
+	@QueryDelegate(Usuario.class)
+	protected static Predicate loginUsuario(QUsuario qUsuario, String emailUsuario, String senhaUsuario){
+		BooleanBuilder builder = new BooleanBuilder();
+		builder.and(qUsuario.email.eq(emailUsuario))
+					.and(qUsuario.senha.eq(senhaUsuario));
+					
+		return builder.getValue();
+	}
 	public int getId() {
 		return id;
 	}

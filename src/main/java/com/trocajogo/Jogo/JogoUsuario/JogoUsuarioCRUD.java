@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -13,8 +14,11 @@ import org.hibernate.Session;
 import com.banco.HibernateUtil;
 import com.banco.conexao;
 import com.data.generic.EntityUtils;
+import com.querydsl.core.BooleanBuilder;
 import com.trocajogo.Jogo.Jogo;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaCRUD;
+
+import static com.trocajogo.Jogo.JogoUsuario.QJogoUsuario.jogoUsuario;
 
 public class JogoUsuarioCRUD {
 
@@ -80,44 +84,10 @@ public class JogoUsuarioCRUD {
 //		}
 //	}
 	
-	public ArrayList<Jogo> buscarJogosUsuario(int idUsuario){
+	public ArrayList<JogoUsuarioDTO> buscarJogosUsuario(int idUsuario){
 		
-		JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
+		return null;
 		
-		//Rever parte do join usando criteria
-		String sql = "SELECT DISTINCT JOGO.ID, JOGO.NOMEJOGO, JOGO.DESCRICAO, "+
-			                "JOGO.CATEGORIA, JOGO.IMAGEM, JOGO.ANO, JOGO.IMAGEM "+
-			           "FROM JOGO JOGO, JOGOUSUARIO "+
-					  "WHERE JOGO.ID = JOGOUSUARIO.IDJOGO "+
-					    "AND JOGOUSUARIO.IDUSUARIO = ?"; 
-		Connection conn = conexao.conectar();
-		PreparedStatement ps;
-		
-		ArrayList<Jogo> jogos = new ArrayList<Jogo>();
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, idUsuario);
-			ResultSet res = ps.executeQuery();
-			
-			while(res.next()){
-				Jogo jogo = new Jogo();
-				jogo.setId(res.getInt("id"));
-				jogo.setNomejogo(res.getString("nomejogo"));
-				jogo.setDescricao(res.getString("descricao"));
-				jogo.setCategoria(res.getInt("categoria"));
-				jogo.setAno(res.getInt("ano"));
-				jogo.setPlataforma(jogoPlataformaCRUD.obterListaPlataformaJogo(jogo.getId()));
-				jogo.setImagem(res.getString("imagem"));
-				
-				jogos.add(jogo);
-			}
-		  	
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return jogos;
-			
 	}
 	
 	public ArrayList<Jogo> buscarJogosUsuarioInteresse(int idUsuario){

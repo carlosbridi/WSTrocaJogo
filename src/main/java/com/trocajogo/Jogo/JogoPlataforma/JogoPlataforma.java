@@ -35,7 +35,6 @@ public class JogoPlataforma {
 
 	public JogoPlataforma(int idJogo, Plataforma plataforma) {
 		super();
-		//this.idJogo = idJogo;
 		this.plataforma = plataforma;
 	}
 
@@ -43,16 +42,18 @@ public class JogoPlataforma {
 		return id;
 	}
 
-	public void setId(int id) {
+	public JogoPlataforma setId(int id) {
 		this.id = id;
+		return this;
 	}
 
 	public Plataforma getPlataforma() {
 		return plataforma;
 	}
 
-	public void setPlataforma(Plataforma plataforma) {
+	public JogoPlataforma setPlataforma(Plataforma plataforma) {
 		this.plataforma = plataforma;
+		return this;
 	}
 
 	@XmlTransient
@@ -60,8 +61,18 @@ public class JogoPlataforma {
 		return jogo;
 	}
 
-	public void setJogoPlataforma(Jogo jogoPlataforma) {
+	public JogoPlataforma setJogoPlataforma(Jogo jogoPlataforma) {
 		this.jogo = jogoPlataforma;
+		return this;
+	}
+
+	public Jogo getJogo() {
+		return jogo;
+	}
+
+	public JogoPlataforma setJogo(Jogo jogo) {
+		this.jogo = jogo;
+		return this;
 	}
 
 	

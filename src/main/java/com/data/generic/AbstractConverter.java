@@ -1,14 +1,19 @@
 package com.data.generic;
 
 import java.util.List;
+import static java.util.stream.Collectors.toList;;
 public abstract class AbstractConverter<E, R> {
 
 	public List<E> toEntity(List<R> representations) {
-		return null;
+		return representations.stream()
+				.map(this::toEntity)
+				.collect(toList());
 	}
 	
 	public List<R> toRepresentation(List<E> entities) {
-		return null;
+		return entities.stream()
+				.map(this::toRepresentation)
+				.collect(toList());
 	}
 	
 	public abstract E toEntity(R representation);

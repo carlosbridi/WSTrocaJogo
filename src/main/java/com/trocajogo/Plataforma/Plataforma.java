@@ -31,8 +31,6 @@ public class Plataforma {
 	@JoinColumn(name = "id")
 	private JogoPlataforma jogoPlataforma;
 	
-	
-	
 	public Plataforma(){
 		
 	}
@@ -52,16 +50,18 @@ public class Plataforma {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public Plataforma setId(int id) {
 		this.id = id;
+		return this;
 	}
 	
 	public String getDescricao() {
 		return descricao;
 	}
 	
-	public void setDescricao(String descricao) {
+	public Plataforma setDescricao(String descricao) {
 		this.descricao = descricao;
+		return this;
 	}
 
 	@XmlTransient
@@ -69,8 +69,9 @@ public class Plataforma {
 		return jogo;
 	}
 
-	public void setJogo(Jogo jogo) {
+	public Plataforma setJogo(Jogo jogo) {
 		this.jogo = jogo;
+		return this;
 	}
 	
 }

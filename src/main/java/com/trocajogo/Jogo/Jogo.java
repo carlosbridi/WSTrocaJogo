@@ -11,12 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.Plataforma.Plataforma;
 
-@XmlRootElement(name = "Jogo")
 @SequenceGenerator(name="jogoid_seq", sequenceName = "jogoid_seq", 
 					allocationSize = 1, initialValue = 1)
 @Entity
@@ -53,47 +51,51 @@ public class Jogo {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public Jogo setId(int id) {
 		this.id = id;
+		return this;
 	}
 	public String getNomejogo() {
 		return nomejogo;
 	}
-	public void setNomejogo(String nomejogo) {
+	public Jogo setNomejogo(String nomejogo) {
 		this.nomejogo = nomejogo;
+		return this;
 	}
 	public String getDescricao() {
 		return descricao;
 	}
-	public void setDescricao(String descricao) {
+	public Jogo setDescricao(String descricao) {
 		this.descricao = descricao;
+		return this;
 	}
 	public int getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(int categoria) {
+	public Jogo setCategoria(int categoria) {
 		this.categoria = categoria;
+		return this;
 	}
 	public int getAno() {
 		return ano;
 	}
-	public void setAno(int ano) {
+	public Jogo setAno(int ano) {
 		this.ano = ano;
+		return this;
 	}
-	
 	public String getImagem() {
 		return imagem;
 	}
-	public void setImagem(String imagem) {
+	public Jogo setImagem(String imagem) {
 		this.imagem = imagem;
+		return this;
 	}
-
 	public List<JogoPlataforma> getPlataforma() {
 		return plataforma;
 	}
-
-	public void setPlataforma(List<JogoPlataforma> plataforma) {
+	public Jogo setPlataforma(List<JogoPlataforma> plataforma) {
 		this.plataforma = plataforma;
+		return this;
 	}
 
 	

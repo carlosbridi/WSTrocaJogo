@@ -1,6 +1,7 @@
 package com.trocajogo.resource;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -14,16 +15,13 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-
-import com.banco.HibernateUtil;
-import com.trocajogo.Jogo.Jogo;
+import com.trocajogo.Jogo.JogoRepository;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaCRUD;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuario;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioCRUD;
+import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioDTO;
+import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioRepository;
 import com.trocajogo.defs.TipoDef;
 import com.trocajogo.model.Retorno;
 
@@ -39,9 +37,9 @@ public class JogoColecaoWS {
 	
     @GET
     @Produces(TipoDef.APPLICATION_JSON)
-    public ArrayList<JogoUsuario> obterColecaoJogosUsuario(@QueryParam("idUsuario") int idUsuario) {
-    	JogoUsuarioCRUD jogoCRUD = new JogoUsuarioCRUD();
-    	return null; //jogoCRUD.buscarJogosUsuario(idUsuario);
+    public List<JogoUsuarioDTO> obterColecaoJogosUsuario(@QueryParam("idUsuario") int idUsuario) {
+    	JogoUsuarioRepository jogoRepository = new JogoUsuarioRepository();
+    	return jogoRepository.listarJogos(idUsuario);
     }
     
     @POST

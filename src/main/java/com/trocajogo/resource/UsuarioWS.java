@@ -14,6 +14,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
+import com.data.generic.ServiceException;
 import com.trocajogo.Usuario.Usuario;
 import com.trocajogo.Usuario.UsuarioConverter;
 import com.trocajogo.Usuario.UsuarioCRUD;
@@ -26,10 +27,8 @@ import com.trocajogo.model.Retorno;
 @Path("/UsuarioWS")
 public class UsuarioWS {
 
-    
-    @Context
+	@Context
     UriInfo uriInfo;
-   
     	
     @Context
     Request request;	
@@ -38,10 +37,8 @@ public class UsuarioWS {
     @Produces(TipoDef.APPLICATION_JSON)
     public UsuarioDTO obterDadosUsuario(@QueryParam("idUsuario") int idUsuario) {
     	UsuarioCRUD dao = new UsuarioCRUD();
-    	Usuario usuario = dao.buscarUsuario(idUsuario);
-    	UsuarioConverter usuarioConverter = new UsuarioConverter();
-    	return usuarioConverter.toRepresentation(usuario);
-    }
+    	return dao.buscarDadosUsuario(idUsuario);
+	}
     
     @POST
     @Consumes(TipoDef.APPLICATION_FORM_URLENCODED)
@@ -66,17 +63,11 @@ public class UsuarioWS {
 	    	UsuarioCRUD userdao = new UsuarioCRUD();
 	    		    	
 	    	//verificar por email também
-	    	if (userdao.nomeUsuarioCadastrado(usuario)){
-	    		return new Retorno(ReturnCodes.NOMEUSUARIO_CADASTRADO, "Já existe um usuário com esse nome de usuário cadastrado.");
-	    	}else if (userdao.verificarEmailUsuario(usuario)){
-	    		return new Retorno(ReturnCodes.EMAILUSUARIO_CADASTRADO, "Já existe um usuário com esse email cadastradao.");
-	    	}else{
-	    		userdao.persistirUsuario(usuario);
-	    		return new Retorno(ReturnCodes.OK, "Usuário cadastrado com sucesso");
-	    	}
-	    }catch(SQLException e){
-    		e.printStackTrace();
-    		return new Retorno(0, "Erro ao cadastrar usuário");
+	    	userdao.persistirUsuario(usuario);
+	    	return new Retorno(ReturnCodes.OK, "Usuário cadastrado com sucesso");
+	    	
+	    }catch(ServiceException e){
+    		return new Retorno(0, e.getMessage());
     	}
     }
     
