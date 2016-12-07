@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaDTO;
 
-@XmlRootElement(name = "JogoDTO")
+@XmlRootElement(name = "Jogo")
 public class JogoDTO extends JogoBase {
 	
 	public List<JogoPlataformaDTO> plataforma = new ArrayList<JogoPlataformaDTO>(); 

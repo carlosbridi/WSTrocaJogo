@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -19,19 +20,17 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import com.banco.HibernateUtil;
-import com.trocajogo.DAO.TrocaCRUD;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaCRUD;
-import com.trocajogo.Plataforma.Plataforma;
+import com.trocajogo.Troca.StatusTroca;
+import com.trocajogo.Troca.Troca;
+import com.trocajogo.Troca.TrocaCRUD;
+import com.trocajogo.Troca.ItemTroca.ItemTroca;
+import com.trocajogo.defs.Retorno;
 import com.trocajogo.defs.TipoDef;
-import com.trocajogo.model.ItemTroca;
-import com.trocajogo.model.ItensJogoTroca;
-import com.trocajogo.model.Retorno;
-import com.trocajogo.model.StatusTroca;
-import com.trocajogo.model.Troca;
 
 @Path("/IncluirTroca")
-public class IncluirTroca {
+public class TrocaWS {
 	@Context
     UriInfo uriInfo;
    
@@ -45,7 +44,23 @@ public class IncluirTroca {
         return "Serviço WEBLocal funcionando!";
     }
     
-
+    @PUT
+    @Consumes(TipoDef.APPLICATION_FORM_URLENCODED)
+    @Produces(TipoDef.APPLICATION_JSON)
+    public Retorno atualizarStatusTroca(MultivaluedMap<String, String> statusTrocaParams) {
+    	int idTroca = Integer.valueOf(statusTrocaParams.getFirst("idTroca"));
+    	String statusTroca = statusTrocaParams.getFirst("statusTroca");
+    	
+    	StatusTroca status = null;	
+    	
+    	TrocaCRUD trocaCrud = new TrocaCRUD();
+    	if (trocaCrud.atualizarStatusTroca(idTroca, status) > 0){
+    		return new Retorno(1, "Atualizada com sucesso");
+    	}else{
+    		return new Retorno(909, "Problemas ao atualizar");
+    	}
+    }
+    
     @POST
     @Consumes(TipoDef.APPLICATION_FORM_URLENCODED)
     @Produces(TipoDef.APPLICATION_JSON)
@@ -59,7 +74,8 @@ public class IncluirTroca {
     
     	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     	java.util.Date date = dateFormat.parse(trocaParams.getFirst("dataTroca"));
-    	//troca.setStatusTroca(StatusTroca.TROCA_ANALISE);
+    	
+    	troca.setStatusTroca(StatusTroca.ANALISE);
     	
     	troca.setDataTroca(date);
 
@@ -69,30 +85,15 @@ public class IncluirTroca {
     	
     	JogoPlataforma jogoPlataformaOferta = jogoPlataformaCRUD.obterJogoPlataforma(Integer.valueOf(trocaParams.getFirst("idJogoPlataformaOferta")));
     	itemTroca.setJogoPlataformaOferta(jogoPlataformaOferta);
-    	//jogoPlataformaOferta.setItemOferta(itemTroca);
     	
     	JogoPlataforma jogoPlataformaTroca = jogoPlataformaCRUD.obterJogoPlataforma(Integer.valueOf(trocaParams.getFirst("idJogoPlataformaTroca"))); 
     	itemTroca.setJogoPlataformaTroca(jogoPlataformaTroca);
-    	//jogoPlataformaTroca.setItemTroca(itemTroca);
     	
-    	
-    	troca.setStatusTroca(StatusTroca.TROCA_ANALISE);
     	itemTroca.setTroca(troca);
     	troca.setItemTroca(itemTroca);
     	
     	try{
     		if (trocaCrud.persistirTroca(troca) > 0){
-    			Session sessao2 = HibernateUtil.getSession();
-				Criteria cri = sessao2.createCriteria(Troca.class);
-				cri.add(Restrictions.eq("id", troca.getId()));
-				
-				Troca tc1;
-				if (cri.list().size() > 0){
-				  tc1 = (Troca) cri.list().get(0);
-				  	
-				  System.out.println(tc1.getItemTroca().getJogoPlataformaOferta().getJogoPlataforma().getNomejogo());
-				  System.out.println(tc1.getItemTroca().getJogoPlataformaTroca().getJogoPlataforma().getNomejogo());
-				}
     			return new Retorno(1, "Troca incluída com sucesso");
     		}else{
     			return new Retorno(999, "Falha ao incluir troca remotamente, tente novamente mais tarde!");

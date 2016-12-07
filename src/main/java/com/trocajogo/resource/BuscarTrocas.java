@@ -12,9 +12,8 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
-import com.trocajogo.DAO.TrocaDAO;
+import com.trocajogo.Troca.Troca;
 import com.trocajogo.defs.TipoDef;
-import com.trocajogo.model.Troca;
 
 @Path("/BuscarTrocas")
 public class BuscarTrocas {
@@ -37,14 +36,15 @@ public class BuscarTrocas {
     @Produces(TipoDef.APPLICATION_JSON)
     public ArrayList<Troca> postUsuario(MultivaluedMap<String, String> buscaJogosParams) {
     	
-    	int idCodUsuario = Integer.valueOf(buscaJogosParams.getFirst("idUsuario"));
-    	TrocaDAO trocaDAO = new TrocaDAO();
-    	try{
-    		return trocaDAO.listarTroca(idCodUsuario);
-    	}catch(Exception e){
-    		e.printStackTrace();
-    		return new ArrayList<Troca>();
-    	}
+//    	int idCodUsuario = Integer.valueOf(buscaJogosParams.getFirst("idUsuario"));
+//    	TrocaDAO trocaDAO = new TrocaDAO();
+//    	try{
+//    		return trocaDAO.listarTroca(idCodUsuario);
+//    	}catch(Exception e){
+//    		e.printStackTrace();
+//    		return new ArrayList<Troca>();
+//    	}
+    	return null;
     }
 	
 }

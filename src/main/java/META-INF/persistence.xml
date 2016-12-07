@@ -7,11 +7,10 @@
 			<class>com.trocajogo.Jogo.JogoUsuario.JogoUsuario</class>
 			<class>com.trocajogo.Plataforma.Plataforma</class>
 			<class>com.trocajogo.Jogo.JogoImagem.JogoImagem</class>
-			<class>com.trocajogo.model.Troca</class>
+			<class>com.trocajogo.Troca.Troca</class>
 			<class>com.trocajogo.model.ItensJogoTroca</class>
 			<class>com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma</class>
-			<class>com.trocajogo.model.ItemTroca</class>
-			<class>com.trocajogo.model.StatusTrocaConverter</class>	
+			<class>com.trocajogo.Troca.ItemTroca.ItemTroca</class>	
           <properties>
               <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
               <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />

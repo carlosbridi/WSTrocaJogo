@@ -1,34 +1,15 @@
-package com.trocajogo.Jogo;
+package com.trocajogo.Jogo.TempJogoBusca;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import com.banco.HibernateUtil;
-import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
-import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaDTO;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuario;
-import com.trocajogo.Jogo.TempJogoBusca.TempJogoBuscaDTO;
 
-public class JogoDAO {
-	
-	@Inject
-	private JogoRepository jogoRepository;
-	
-	public JogoDAO() {
-		super();
-		jogoRepository = new JogoRepository();
-	}
-	
-	
-	public Jogo buscarDadosJogo(int idJogo){
-		return jogoRepository.findByIdThrowsException(idJogo);
-	}
+public class JogoBuscaRepository {
 	
 	public ArrayList<TempJogoBuscaDTO> buscarJogosUsuario(int idUsuario, String nomeJogo, int categoria, int plataforma){
 		
@@ -44,8 +25,7 @@ public class JogoDAO {
 			
 			TempJogoBuscaDTO tempJogoBuscaDTO = new TempJogoBuscaDTO();
 			tempJogoBuscaDTO.idUsuarioTroca = jogo.getIdUsuario();
-			tempJogoBuscaDTO.jogo = jogo.getJogoPlataforma().getJogoPlataforma();
-			tempJogoBuscaDTO.plataforma.add(jogo.getJogoPlataforma().getPlataforma());
+	//		tempJogoBuscaDTO.plataforma.add(jogo.getJogoPlataforma().getPlataforma());
 			
 			jogoUsuario.add(tempJogoBuscaDTO);
 			
@@ -55,6 +35,4 @@ public class JogoDAO {
 		
 		
 	}
-	
 }
-

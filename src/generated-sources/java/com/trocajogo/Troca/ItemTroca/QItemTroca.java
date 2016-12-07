@@ -1,4 +1,4 @@
-package com.trocajogo.model;
+package com.trocajogo.Troca.ItemTroca;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -16,7 +16,7 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QItemTroca extends EntityPathBase<ItemTroca> {
 
-    private static final long serialVersionUID = -133363464L;
+    private static final long serialVersionUID = -282455956L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
@@ -32,7 +32,7 @@ public class QItemTroca extends EntityPathBase<ItemTroca> {
 
     public final com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma jogoPlataformaTroca;
 
-    public final QTroca troca;
+    public final com.trocajogo.Troca.QTroca troca;
 
     public QItemTroca(String variable) {
         this(ItemTroca.class, forVariable(variable), INITS);
@@ -54,7 +54,7 @@ public class QItemTroca extends EntityPathBase<ItemTroca> {
         super(type, metadata, inits);
         this.jogoPlataformaOferta = inits.isInitialized("jogoPlataformaOferta") ? new com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma(forProperty("jogoPlataformaOferta"), inits.get("jogoPlataformaOferta")) : null;
         this.jogoPlataformaTroca = inits.isInitialized("jogoPlataformaTroca") ? new com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma(forProperty("jogoPlataformaTroca"), inits.get("jogoPlataformaTroca")) : null;
-        this.troca = inits.isInitialized("troca") ? new QTroca(forProperty("troca"), inits.get("troca")) : null;
+        this.troca = inits.isInitialized("troca") ? new com.trocajogo.Troca.QTroca(forProperty("troca"), inits.get("troca")) : null;
     }
 
 }

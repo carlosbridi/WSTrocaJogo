@@ -1,4 +1,4 @@
-package com.trocajogo.model;
+package com.trocajogo.Troca;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -16,7 +16,7 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QTroca extends EntityPathBase<Troca> {
 
-    private static final long serialVersionUID = -1454825909L;
+    private static final long serialVersionUID = 1159322705L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
@@ -30,7 +30,7 @@ public class QTroca extends EntityPathBase<Troca> {
 
     public final NumberPath<Integer> idUsuarioTroca = createNumber("idUsuarioTroca", Integer.class);
 
-    public final QItemTroca itemTroca;
+    public final com.trocajogo.Troca.ItemTroca.QItemTroca itemTroca;
 
     public final EnumPath<StatusTroca> statusTroca = createEnum("statusTroca", StatusTroca.class);
 
@@ -52,7 +52,7 @@ public class QTroca extends EntityPathBase<Troca> {
 
     public QTroca(Class<? extends Troca> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.itemTroca = inits.isInitialized("itemTroca") ? new QItemTroca(forProperty("itemTroca"), inits.get("itemTroca")) : null;
+        this.itemTroca = inits.isInitialized("itemTroca") ? new com.trocajogo.Troca.ItemTroca.QItemTroca(forProperty("itemTroca"), inits.get("itemTroca")) : null;
     }
 
 }

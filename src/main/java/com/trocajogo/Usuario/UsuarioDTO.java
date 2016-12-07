@@ -2,7 +2,7 @@ package com.trocajogo.Usuario;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "UsuarioDTO")
+@XmlRootElement(name = "Usuario")
 public class UsuarioDTO {
 	
 	public int id;

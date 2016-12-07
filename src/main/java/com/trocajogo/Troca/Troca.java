@@ -1,4 +1,4 @@
-package com.trocajogo.model;
+package com.trocajogo.Troca;
 
 import java.util.Date;
 
@@ -17,6 +17,9 @@ import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.eclipse.persistence.annotations.Converter;
+
+import com.trocajogo.Troca.ItemTroca.ItemTroca;
+import com.trocajogo.model.ItensJogoTroca;
 
 
 @XmlRootElement(name = "Troca")
@@ -43,6 +46,7 @@ public class Troca {
     private Date dataTroca; // Data da troca
     
     @Column(name="status")
+    @Enumerated(EnumType.ORDINAL)
     private StatusTroca statusTroca; // Status da Troca (Analise, Cancelada, Finalizada)
    
     public int getId() {

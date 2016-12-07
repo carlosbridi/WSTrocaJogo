@@ -12,7 +12,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
-import com.trocajogo.Jogo.JogoDAO;
+import com.trocajogo.Jogo.TempJogoBusca.JogoBuscaRepository;
 import com.trocajogo.Jogo.TempJogoBusca.TempJogoBuscaDTO;
 import com.trocajogo.defs.TipoDef;
 
@@ -41,10 +41,10 @@ public class BuscarJogosUsuario {
     	int plataforma = Integer.valueOf(buscaJogosParams.getFirst("plataforma"));
     	int categoria = Integer.valueOf(buscaJogosParams.getFirst("categoria"));
     	
-    	JogoDAO jogoDao = new JogoDAO();
+    	JogoBuscaRepository jogoBuscaRepository = new JogoBuscaRepository();
     	
     	try{
-    		return jogoDao.buscarJogosUsuario(idCodUsuario, nomeJogo, categoria, plataforma);
+    		return jogoBuscaRepository.buscarJogosUsuario(idCodUsuario, nomeJogo, categoria, plataforma);
     	}catch(Exception e){
     		e.printStackTrace();
     		return new ArrayList<TempJogoBuscaDTO>();

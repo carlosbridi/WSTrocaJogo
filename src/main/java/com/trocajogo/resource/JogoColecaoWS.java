@@ -1,6 +1,5 @@
 package com.trocajogo.resource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -15,15 +14,14 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
-import com.trocajogo.Jogo.JogoRepository;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaCRUD;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuario;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioCRUD;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioDTO;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioRepository;
+import com.trocajogo.defs.Retorno;
 import com.trocajogo.defs.TipoDef;
-import com.trocajogo.model.Retorno;
 
 @Path("/JogoColecaoWS")
 public class JogoColecaoWS {
@@ -75,15 +73,13 @@ public class JogoColecaoWS {
     	
     	try{
     		JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
-    		JogoPlataforma jogoPlataforma = jogoPlataformaCRUD.obterJogoPlataforma(idJogoPlataforma);
+    		//JogoPlataforma jogoPlataforma = jogoPlataformaCRUD.obterJogoPlataforma(idJogoPlataforma);
     		
-    		JogoUsuario jogo = new JogoUsuario(idUsuario, jogoPlataforma);
+    		//JogoUsuario jogo = new JogoUsuario(idUsuario, jogoPlataforma);
     		
-    		if (jogoUsuarioCrud.removerJogoUsuario(jogo) > 0){
-    			return new Retorno(1, "Jogo removido com sucesso!");
-    		}else{
-    			return new Retorno(908, "Problemas ao remover jogo!");
-    		}
+    		jogoUsuarioCrud.removerJogoUsuario(idUsuario, idJogoPlataforma);
+    		return new Retorno(1, "Jogo removido com sucesso!");
+    		
     	}catch(Exception e){
     		e.printStackTrace();
     		return new Retorno(908, "Problemas ao remover jogo!");

@@ -1,30 +1,20 @@
 package com.trocajogo.Jogo.JogoUsuario;
 
 import javax.inject.Inject;
-
 import com.data.generic.AbstractConverter;
 import com.trocajogo.Jogo.JogoConverter;
-import com.trocajogo.Jogo.JogoRepository;
-import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaConverter;
-import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaRepository;
 
 public class JogoUsuarioConverter extends AbstractConverter<JogoUsuario, JogoUsuarioDTO> {
 
-	@Inject
-	private JogoPlataformaRepository jogoPlataformaRepository;
 	
 	@Inject
 	private JogoPlataformaConverter jogoPlataformaConverter;
 	
-	@Inject
-	private JogoRepository jogoRepository;
 	
 	public JogoUsuarioConverter() {
 		super();
 		jogoPlataformaConverter = new JogoPlataformaConverter();
-		jogoPlataformaRepository = new JogoPlataformaRepository();
-		jogoRepository = new JogoRepository();
 	}
 	
 	@Override
@@ -52,7 +42,6 @@ public class JogoUsuarioConverter extends AbstractConverter<JogoUsuario, JogoUsu
 		
 		JogoPlataformaConverter jogoPlataformaConverter = new JogoPlataformaConverter();
 		jogoUsuarioDTO.jogoPlataforma = jogoPlataformaConverter.toRepresentation(jogoUsuario.getJogoPlataforma());
-		//jogoUsuarioDTO.jogoPlataforma = jogoPlataformaConverter.toRepresentation(jogoPlataformaRepository.findByIdThrowsException(jogoUsuarioDTO.));
 		return jogoUsuarioDTO;
 	}
 

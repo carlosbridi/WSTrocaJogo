@@ -13,8 +13,8 @@ public class JogoImagemRepository extends AbstractRepository<JogoImagem, QJogoIm
 		return jogoImagem;
 	}
 	
-	public JogoImagem findByIdThrowsException(Integer id) throws ServiceException {
-		BooleanExpression predicate = jogoImagem.id.eq(id);
+	public JogoImagem findByIdThrowsException(Integer idJogo) throws ServiceException {
+		BooleanExpression predicate = jogoImagem.idJogo.eq(idJogo);
 		return findOneThrowsException(predicate);
 	}
 

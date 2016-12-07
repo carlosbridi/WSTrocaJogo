@@ -9,6 +9,10 @@ public class JogoImagemCRUD {
 	@Inject
 	private JogoImagemConverter jogoImagemConverter;
 	
+	public JogoImagemCRUD() {
+		jogoImagemConverter = new JogoImagemConverter();
+	}
+	
 	public JogoImagem criarJogoImagem(){
 		return new JogoImagem();
 	}

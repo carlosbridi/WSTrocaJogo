@@ -19,10 +19,10 @@ import com.trocajogo.Usuario.Usuario;
 import com.trocajogo.Usuario.UsuarioConverter;
 import com.trocajogo.Usuario.UsuarioCRUD;
 import com.trocajogo.Usuario.UsuarioDTO;
+import com.trocajogo.defs.Retorno;
 import com.trocajogo.defs.ReturnCodes;
 import com.trocajogo.defs.TipoDef;
 import com.trocajogo.defs.UserFields;
-import com.trocajogo.model.Retorno;
 
 @Path("/UsuarioWS")
 public class UsuarioWS {

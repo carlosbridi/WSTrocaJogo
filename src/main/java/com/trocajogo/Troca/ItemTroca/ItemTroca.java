@@ -1,4 +1,4 @@
-package com.trocajogo.model;
+package com.trocajogo.Troca.ItemTroca;
 
 
 import javax.persistence.Column;
@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
+import com.trocajogo.Troca.Troca;
 
 @SequenceGenerator(name = "itemtrocaid_seq", sequenceName = "itemtrocaid_seq", allocationSize = 1, initialValue = 1)
 

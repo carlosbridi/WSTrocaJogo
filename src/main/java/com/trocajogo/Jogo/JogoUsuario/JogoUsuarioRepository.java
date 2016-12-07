@@ -31,5 +31,5 @@ public class JogoUsuarioRepository extends AbstractRepository<JogoUsuario, QJogo
 		List<JogoUsuario> listaJogoUsuario = find(booleanBuilder.getValue());
 		return jogoUsuarioConverter.toRepresentation(listaJogoUsuario);
 	}
-	
+		
 }

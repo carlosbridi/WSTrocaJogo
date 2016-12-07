@@ -1,4 +1,4 @@
-package com.trocajogo.DAO;
+package com.trocajogo.Troca;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 import com.banco.*;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioCRUD;
-import com.trocajogo.model.*;
 
 public class TrocaConcluida {
 
@@ -15,9 +14,9 @@ public class TrocaConcluida {
 	
 	public TrocaConcluida(int idTroca){
 		this.idTroca = idTroca;
-		TrocaDAO trocaDAO = new TrocaDAO();
+		TrocaCRUD trocaCRUD = new TrocaCRUD();
 		
-		troca = trocaDAO.obterTroca(idTroca);
+		troca = trocaCRUD.obterTroca(idTroca);
 	}
 	
 	

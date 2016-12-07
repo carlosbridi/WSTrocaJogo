@@ -1,4 +1,4 @@
-package com.trocajogo.model;
+package com.trocajogo.defs;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

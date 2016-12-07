@@ -1,6 +1,5 @@
 package com.trocajogo.Jogo;
 
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -8,12 +7,8 @@ import javax.inject.Inject;
 
 import com.data.generic.AbstractConverter;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
-import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaCRUD;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaConverter;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaRepository;
-import com.trocajogo.Plataforma.Plataforma;
-import com.trocajogo.Plataforma.PlataformaConverter;
-import com.trocajogo.Plataforma.PlataformaRepository;
 
 public class JogoConverter extends AbstractConverter<Jogo, JogoDTO> {
 	

@@ -1,4 +1,4 @@
-package com.trocajogo.DAO;
+package com.trocajogo.Troca.ItemTroca;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

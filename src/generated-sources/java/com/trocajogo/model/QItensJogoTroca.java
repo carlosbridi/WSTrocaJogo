@@ -40,7 +40,7 @@ public class QItensJogoTroca extends EntityPathBase<ItensJogoTroca> {
 
     public final com.trocajogo.Plataforma.QPlataforma plataformaTroca;
 
-    public final QTroca troca;
+    public final com.trocajogo.Troca.QTroca troca;
 
     public QItensJogoTroca(String variable) {
         this(ItensJogoTroca.class, forVariable(variable), INITS);
@@ -64,7 +64,7 @@ public class QItensJogoTroca extends EntityPathBase<ItensJogoTroca> {
         this.jogoTroca = inits.isInitialized("jogoTroca") ? new com.trocajogo.Jogo.QJogo(forProperty("jogoTroca")) : null;
         this.plataformaOferta = inits.isInitialized("plataformaOferta") ? new com.trocajogo.Plataforma.QPlataforma(forProperty("plataformaOferta"), inits.get("plataformaOferta")) : null;
         this.plataformaTroca = inits.isInitialized("plataformaTroca") ? new com.trocajogo.Plataforma.QPlataforma(forProperty("plataformaTroca"), inits.get("plataformaTroca")) : null;
-        this.troca = inits.isInitialized("troca") ? new QTroca(forProperty("troca"), inits.get("troca")) : null;
+        this.troca = inits.isInitialized("troca") ? new com.trocajogo.Troca.QTroca(forProperty("troca"), inits.get("troca")) : null;
     }
 
 }
