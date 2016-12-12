@@ -1,23 +1,11 @@
 package com.trocajogo.Plataforma;
 
-import java.util.Optional;
-import javax.inject.Inject;
-
 import com.data.generic.AbstractConverter;
-import com.trocajogo.Jogo.JogoConverter;
-import com.trocajogo.Jogo.JogoRepository;
 
 public class PlataformaConverter extends AbstractConverter<Plataforma, PlataformaDTO> {
 
-	@Inject
-	private JogoConverter jogoConverter;
-	
-	@Inject
-	private JogoRepository jogoRepository;
 	
 	public PlataformaConverter() {
-		jogoConverter = new JogoConverter();
-		jogoRepository = new JogoRepository();
 	}
 	
 	@Override
@@ -39,7 +27,6 @@ public class PlataformaConverter extends AbstractConverter<Plataforma, Plataform
 		PlataformaDTO plataformaDTO = new PlataformaDTO();
 		plataformaDTO.id = plataforma.getId();
 		plataformaDTO.descricao = plataforma.getDescricao();
-		//plataformaDTO.jogo = jogoConverter.toRepresentation(plataforma.getJogo());
 		return plataformaDTO;
 	}
 

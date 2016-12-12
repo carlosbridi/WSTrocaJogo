@@ -27,8 +27,8 @@ public class TrocaConcluida {
 		try {
 			cmd = conn.prepareStatement(sql);
 			
-			cmd.setInt(1, troca.getJogoTroca().getIdUsuarioTroca());
-			cmd.setInt(2, troca.getJogoTroca().getJogoTrocaPlataforma().getPlataforma().getId());
+			cmd.setInt(1, troca.getItemTroca().getIdUsuarioTroca());
+			cmd.setInt(2, troca.getItemTroca().getJogoPlataformaTroca().getPlataforma().getId());
 			
 			cmd.executeUpdate();
 			
@@ -40,9 +40,9 @@ public class TrocaConcluida {
 		try {
 			cmd = conn.prepareStatement(sql);
 			
-			cmd.setInt(1, troca.getJogoTroca().getIdUsuarioOferta());
-			
-			//cmd.setInt(2, troca.getJogoTroca().getJogoOferta().getPlataforma().g );
+
+			cmd.setInt(1, troca.getItemTroca().getIdUsuarioOferta());
+			cmd.setInt(2, troca.getItemTroca().getJogoPlataformaOferta().getPlataforma().getId());
 			
 			cmd.executeUpdate();
 			

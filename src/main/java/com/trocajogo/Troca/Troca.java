@@ -13,16 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.eclipse.persistence.annotations.Converter;
-
 import com.trocajogo.Troca.ItemTroca.ItemTroca;
-import com.trocajogo.model.ItensJogoTroca;
 
 
-@XmlRootElement(name = "Troca")
 @SequenceGenerator(name="trocaid_seq", sequenceName = "trocaid_seq", 
 allocationSize = 1, initialValue = 1)
 @Entity
@@ -35,9 +30,6 @@ public class Troca {
 	private int id; // Id Troca
     private int idUsuarioOferta; // Meu ID
     private int idUsuarioTroca; // ID Usuário remoto
-    
-    @Transient
-    private ItensJogoTroca jogoTroca; // Jogo troca do usuário remoto
     
     @OneToOne(mappedBy = "troca", cascade = CascadeType.ALL)
     private ItemTroca itemTroca;
@@ -53,58 +45,54 @@ public class Troca {
 		return id;
 	}
 	
-    public void setId(int id) {
+    public Troca setId(int id) {
 		this.id = id;
+		return this;
 	}
 	
 	public int getIdUsuarioOferta() {
 		return idUsuarioOferta;
 	}
 	
-	public void setIdUsuarioOferta(int idUsuarioOferta) {
+	public Troca setIdUsuarioOferta(int idUsuarioOferta) {
 		this.idUsuarioOferta = idUsuarioOferta;
+		return this;
 	}
 	
 	public int getIdUsuarioTroca() {
 		return idUsuarioTroca;
 	}
 	
-	public void setIdUsuarioTroca(int idUsuarioTroca) {
+	public Troca setIdUsuarioTroca(int idUsuarioTroca) {
 		this.idUsuarioTroca = idUsuarioTroca;
-	}
-	
-	public ItensJogoTroca getJogoTroca() {
-		return jogoTroca;
-	}
-	
-	public void setJogoTroca(ItensJogoTroca jogoTroca) {
-		this.jogoTroca = jogoTroca;
+		return this;
 	}
 	
 	public Date getDataTroca() {
 		return dataTroca;
 	}
 	
-	public void setDataTroca(Date dataTroca) {
+	public Troca setDataTroca(Date dataTroca) {
 		this.dataTroca = dataTroca;
+		return this;
 	}
 	
 	public StatusTroca getStatusTroca() {
 		return statusTroca;
 	}
 	
-	public void setStatusTroca(StatusTroca statusTroca) {
+	public Troca setStatusTroca(StatusTroca statusTroca) {
 		this.statusTroca = statusTroca;
+		return this;
 	}
 	
 	public ItemTroca getItemTroca() {
 		return itemTroca;
 	}
 	
-	public void setItemTroca(ItemTroca itemTroca) {
+	public Troca setItemTroca(ItemTroca itemTroca) {
 		this.itemTroca = itemTroca;
+		return this;
 	}
-	
-	
 	
 }

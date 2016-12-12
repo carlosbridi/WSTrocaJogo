@@ -1,14 +1,22 @@
 package com.trocajogo.Troca;
 
-import java.text.SimpleDateFormat;
+import java.util.List;
+
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
+
 import com.data.generic.EntityUtils;
 
 public class TrocaCRUD {
 	
 	
+	@Inject
+	private TrocaRepository trocaRepository; 
+	
+	@Inject
+	private TrocaConverter trocaConverter;
+	
 	public int persistirTroca(Troca troca){
-		
 		EntityManager em = EntityUtils.getEntityManager();
 		em.getTransaction().begin();
 		
@@ -25,7 +33,6 @@ public class TrocaCRUD {
 		}
 		return troca.getId();
 	}
-	
 	
 	
 	public int atualizarStatusTroca(int idTroca, StatusTroca status){
@@ -47,6 +54,12 @@ public class TrocaCRUD {
 	public Troca obterTroca(int idTroca){
 		TrocaRepository trocaRepository = new TrocaRepository();
 		return trocaRepository.findByIdThrowsException(idTroca);
+	}
+	
+	public List<TrocaDTO> listarTrocasUsuario(int idUsuario){
+		trocaRepository = new TrocaRepository();
+		trocaConverter = new TrocaConverter();
+		return trocaConverter.toRepresentation(trocaRepository.obterTrocasUsuario(idUsuario));
 	}
 	
 	

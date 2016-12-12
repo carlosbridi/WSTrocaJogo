@@ -16,7 +16,6 @@ import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.Troca.Troca;
 
 @SequenceGenerator(name = "itemtrocaid_seq", sequenceName = "itemtrocaid_seq", allocationSize = 1, initialValue = 1)
-
 @Entity
 @Table(name = "itemtroca")
 public class ItemTroca {
@@ -88,16 +87,18 @@ public class ItemTroca {
 		return jogoPlataformaTroca;
 	}
 
-	public void setJogoPlataformaTroca(JogoPlataforma jogoPlataformaTroca) {
+	public ItemTroca setJogoPlataformaTroca(JogoPlataforma jogoPlataformaTroca) {
 		this.jogoPlataformaTroca = jogoPlataformaTroca;
+		return this;
 	}
 
 	public JogoPlataforma getJogoPlataformaOferta() {
 		return jogoPlataformaOferta;
 	}
 
-	public void setJogoPlataformaOferta(JogoPlataforma jogoPlataformaOferta) {
+	public ItemTroca setJogoPlataformaOferta(JogoPlataforma jogoPlataformaOferta) {
 		this.jogoPlataformaOferta = jogoPlataformaOferta;
+		return this;
 	}
 	
 	
