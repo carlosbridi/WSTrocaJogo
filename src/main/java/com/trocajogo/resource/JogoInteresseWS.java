@@ -15,6 +15,7 @@ import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaCRUD;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuario;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioCRUD;
+import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioException;
 import com.trocajogo.defs.Retorno;
 import com.trocajogo.defs.TipoDef;
 
@@ -39,9 +40,9 @@ public class JogoInteresseWS {
     	JogoUsuarioCRUD jogoUsuarioCrud = new JogoUsuarioCRUD();
     	
     	try{
-    		JogoPlataforma jogo = jogoPlataformaCRUD.obterJogoPlataforma(idJogoPlataforma);
+    		JogoPlataforma jogoPlataforma = jogoPlataformaCRUD.obterJogoPlataforma(idJogoPlataforma);
         	
-    		if (jogoUsuarioCrud.adicionarJogoUsuario(new JogoUsuario(idUsuario, jogo, true))> 0){
+    		if (jogoUsuarioCrud.adicionarJogoUsuario(idUsuario, jogoPlataforma, true) > 0){
     			return new Retorno(1, "Jogo adicionado com sucesso!");
     		}else{
     			return new Retorno(908, "Problemas ao adicionar jogo!");
@@ -57,22 +58,19 @@ public class JogoInteresseWS {
     @DELETE
     @Consumes(TipoDef.APPLICATION_FORM_URLENCODED)
     @Produces(TipoDef.APPLICATION_JSON)
-    public Retorno removerJogoUsuario(@QueryParam("idUsuario") int idUsuario, @QueryParam("idJogoPlataforma") int idJogoPlataforma) {
-    	
-    	JogoUsuarioCRUD jogoInteresseCrud = new JogoUsuarioCRUD();
-    	try{
-    		JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
-        	JogoPlataforma jogo = jogoPlataformaCRUD.obterJogoPlataforma(idJogoPlataforma);
-        	
-    		if (jogoInteresseCrud.removerJogoUsuarioInteresse(new JogoUsuario(idUsuario, jogo, true)) > 0){
-    			return new Retorno(1, "Jogo removido com sucesso!");
-    		}else{
-    			return new Retorno(908, "Problemas ao remover jogo!");
-    		}
-    		
-    	}catch(Exception e){
-    		e.printStackTrace();
-    		return new Retorno(908, "Problemas ao remover jogo!");
-    	}
-    }
+	public Retorno removerJogoUsuario(@QueryParam("idUsuario") int idUsuario,
+			@QueryParam("idJogoPlataforma") int idJogoPlataforma) {
+
+		JogoUsuarioCRUD jogoUsuarioCRUD = new JogoUsuarioCRUD();
+		JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
+
+		try {
+			jogoUsuarioCRUD.removerJogoUsuario(idUsuario, idJogoPlataforma, true);
+			return new Retorno(1, "Jogo removido com sucesso!");
+		} catch (JogoUsuarioException e) {
+			return new Retorno(908, e.getMessage());
+
+		}
+
+	}
 }

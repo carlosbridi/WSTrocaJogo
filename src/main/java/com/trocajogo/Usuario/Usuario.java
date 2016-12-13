@@ -20,7 +20,6 @@ import com.querydsl.core.types.Predicate;
 @Table(name="usuario")
 public class Usuario {
 	
-
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuarioid_seq")
 	@Id
 	private int id;
