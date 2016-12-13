@@ -24,11 +24,11 @@ public class QJogoUsuario extends EntityPathBase<JogoUsuario> {
 
     public final NumberPath<Integer> id = createNumber("id", Integer.class);
 
-    public final NumberPath<Integer> idUsuario = createNumber("idUsuario", Integer.class);
-
     public final BooleanPath interesse = createBoolean("interesse");
 
     public final com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma jogoPlataforma;
+
+    public final com.trocajogo.Usuario.QUsuario usuario;
 
     public QJogoUsuario(String variable) {
         this(JogoUsuario.class, forVariable(variable), INITS);
@@ -49,6 +49,11 @@ public class QJogoUsuario extends EntityPathBase<JogoUsuario> {
     public QJogoUsuario(Class<? extends JogoUsuario> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.jogoPlataforma = inits.isInitialized("jogoPlataforma") ? new com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma(forProperty("jogoPlataforma"), inits.get("jogoPlataforma")) : null;
+        this.usuario = inits.isInitialized("usuario") ? new com.trocajogo.Usuario.QUsuario(forProperty("usuario")) : null;
+    }
+
+    public com.querydsl.core.types.Predicate jogoUsuarioCadastrado(Integer idUsuario, Integer idJogoPlataforma) {
+        return JogoUsuario.jogoUsuarioCadastrado(this, idUsuario, idJogoPlataforma);
     }
 
 }

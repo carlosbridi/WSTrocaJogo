@@ -26,7 +26,7 @@ public class JogoUsuarioRepository extends AbstractRepository<JogoUsuario, QJogo
 
 	public List<JogoUsuarioDTO> listarJogos(int idUsuario){
 		BooleanBuilder booleanBuilder = new BooleanBuilder();
-		booleanBuilder.and(jogoUsuario.idUsuario.eq(idUsuario));
+		booleanBuilder.and(jogoUsuario.usuario.id.eq(idUsuario));
 		
 		List<JogoUsuario> listaJogoUsuario = find(booleanBuilder.getValue());
 		return jogoUsuarioConverter.toRepresentation(listaJogoUsuario);

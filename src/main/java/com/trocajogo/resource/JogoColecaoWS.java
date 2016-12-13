@@ -16,9 +16,10 @@ import javax.ws.rs.core.UriInfo;
 
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaCRUD;
-import com.trocajogo.Jogo.JogoUsuario.JogoUsuario;
+import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaRepository;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioCRUD;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioDTO;
+import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioException;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioRepository;
 import com.trocajogo.defs.Retorno;
 import com.trocajogo.defs.TipoDef;
@@ -45,44 +46,39 @@ public class JogoColecaoWS {
     @Produces(TipoDef.APPLICATION_JSON)
     public Retorno inserirJogoUsuario(MultivaluedMap<String, String> buscaJogosParams) {
     	
-    	int idJogoPlataforma = Integer.valueOf(buscaJogosParams.getFirst("idJogoPlataforma"));
-    	int idUsuario = Integer.valueOf(buscaJogosParams.getFirst("idUsuario"));
+    	String strUsuario = buscaJogosParams.getFirst("idUsuario");
+    	int codUsuario = Integer.valueOf(strUsuario);
     	
-    	JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
+    	int idJogoPlataforma = Integer.valueOf(buscaJogosParams.getFirst("idJogoPlataforma"));
+    	int idUsuario = codUsuario;
+    	
+    	JogoPlataformaRepository jogoPlataformaCRUD = new JogoPlataformaRepository();
     	JogoUsuarioCRUD jogoUsuarioCrud = new JogoUsuarioCRUD();
     	
     	try{
-    		JogoPlataforma jogo = jogoPlataformaCRUD.obterJogoPlataforma(idJogoPlataforma);
+    		JogoPlataforma jogoPlataforma = jogoPlataformaCRUD.findByIdThrowsException(idJogoPlataforma);
         	
-    		if (jogoUsuarioCrud.adicionarJogoUsuario(new JogoUsuario(idUsuario, jogo))> 0){
+    		if (jogoUsuarioCrud.adicionarJogoUsuario(idUsuario, jogoPlataforma, false)> 0){
     			return new Retorno(1, "Jogo adicionado com sucesso!");
     		}else{
     			return new Retorno(908, "Problemas ao adicionar jogo!");
     		}
     		
     	}catch(Exception e){
-    		e.printStackTrace();
-    		return new Retorno(908, "Problemas ao adicionar jogo!");
+    		return new Retorno(908, e.getMessage());
     	}
     }
     
     @DELETE
     @Produces(TipoDef.APPLICATION_JSON)
     public Retorno removerJogoUsuario(@QueryParam("idUsuario") int idUsuario, @QueryParam("idJogoPlataforma") int idJogoPlataforma) {
-    	JogoUsuarioCRUD jogoUsuarioCrud = new JogoUsuarioCRUD();
-    	
     	try{
-    		JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
-    		//JogoPlataforma jogoPlataforma = jogoPlataformaCRUD.obterJogoPlataforma(idJogoPlataforma);
-    		
-    		//JogoUsuario jogo = new JogoUsuario(idUsuario, jogoPlataforma);
-    		
-    		jogoUsuarioCrud.removerJogoUsuario(idUsuario, idJogoPlataforma);
+    		JogoUsuarioCRUD jogoUsuarioCrud = new JogoUsuarioCRUD();
+        	jogoUsuarioCrud.removerJogoUsuario(idUsuario, idJogoPlataforma, false);
     		return new Retorno(1, "Jogo removido com sucesso!");
     		
-    	}catch(Exception e){
-    		e.printStackTrace();
-    		return new Retorno(908, "Problemas ao remover jogo!");
+    	}catch(JogoUsuarioException e){
+    		return new Retorno(908, e.getMessage());
     	}
     }
     

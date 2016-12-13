@@ -10,7 +10,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.annotations.QueryDelegate;
+import com.querydsl.core.types.Predicate;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
+import com.trocajogo.Usuario.QUsuario;
+import com.trocajogo.Usuario.Usuario;
 
 @Entity
 @Table(name="jogousuario")
@@ -22,7 +27,10 @@ public class JogoUsuario {
 	@SequenceGenerator(name="jogousuarioid_seq", sequenceName = "jogousuarioid_seq", 
 	  allocationSize = 1, initialValue = 1)
 	private int id;
-	private int idUsuario;
+	
+	@OneToOne
+	@JoinColumn(name = "idusuario")
+	private Usuario usuario;
 	
 	@OneToOne
 	@JoinColumn(name = "jogoplataforma_id")
@@ -34,19 +42,28 @@ public class JogoUsuario {
 		
 	}
 	
-	public JogoUsuario(int idUsuario, JogoPlataforma jogoPlataforma) {
+	public JogoUsuario(Usuario usuario, JogoPlataforma jogoPlataforma) {
 		super();
-		this.idUsuario = idUsuario;
+		this.usuario = usuario;
 		this.jogoPlataforma = jogoPlataforma;
 		
 	}
 
-	public JogoUsuario(int idUsuario, JogoPlataforma jogoPlataforma, boolean interesse) {
+	public JogoUsuario(Usuario usuario, JogoPlataforma jogoPlataforma, boolean interesse) {
 		super();
-		this.idUsuario = idUsuario;
+		this.usuario = usuario;
 		this.jogoPlataforma = jogoPlataforma;
 		this.interesse = interesse;
 	}
+	
+	@QueryDelegate(JogoUsuario.class)
+	protected static Predicate jogoUsuarioCadastrado(QJogoUsuario qJogoUsuario, int idUsuario, int idJogoPlataforma) {
+		BooleanBuilder builder = new BooleanBuilder();
+		builder.and(qJogoUsuario.usuario.id.eq(idUsuario))
+			   .and(qJogoUsuario.jogoPlataforma.id.eq(idJogoPlataforma));
+		return builder.getValue();
+	}
+	 
 
 	public int getId() {
 		return id;
@@ -55,11 +72,11 @@ public class JogoUsuario {
 		this.id = id;
 		return this;
 	}
-	public int getIdUsuario() {
-		return idUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public JogoUsuario setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public JogoUsuario setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 		return this;
 	}
 	
