@@ -8,7 +8,6 @@ import javax.inject.Inject;
 
 import com.data.generic.AbstractRepository;
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
 

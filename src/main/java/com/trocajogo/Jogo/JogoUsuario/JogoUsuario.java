@@ -14,7 +14,6 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.annotations.QueryDelegate;
 import com.querydsl.core.types.Predicate;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
-import com.trocajogo.Usuario.QUsuario;
 import com.trocajogo.Usuario.Usuario;
 
 @Entity
