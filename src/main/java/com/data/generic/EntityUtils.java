@@ -6,8 +6,15 @@ import javax.persistence.Persistence;
 
 public class EntityUtils {
 
+	private static EntityManager entityManager;
+	
 	public static EntityManager getEntityManager(){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("crudHibernatePU");
-		return emf.createEntityManager();
+		
+		if (entityManager == null){
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("crudHibernatePU");
+			entityManager = emf.createEntityManager();
+		}
+		
+		return entityManager;
 	}
 }

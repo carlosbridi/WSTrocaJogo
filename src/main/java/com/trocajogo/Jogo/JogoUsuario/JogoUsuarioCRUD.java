@@ -1,7 +1,6 @@
 package com.trocajogo.Jogo.JogoUsuario;
 
 import static com.trocajogo.Jogo.JogoUsuario.QJogoUsuario.jogoUsuario;
-import static com.trocajogo.Usuario.QUsuario.usuario;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
