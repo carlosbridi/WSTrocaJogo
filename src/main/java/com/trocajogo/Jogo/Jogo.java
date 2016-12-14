@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,7 +32,7 @@ public class Jogo {
 	private String imagem;
 	
 	@OneToMany(mappedBy = "jogo", cascade = CascadeType.ALL)
-	private List<JogoPlataforma> plataforma = new ArrayList<JogoPlataforma>(); 
+	private List<JogoPlataforma> jogoPlataforma = new ArrayList<JogoPlataforma>(); 
 	
 	public Jogo(){
 		
@@ -91,10 +92,10 @@ public class Jogo {
 		return this;
 	}
 	public List<JogoPlataforma> getPlataforma() {
-		return plataforma;
+		return jogoPlataforma;
 	}
-	public Jogo setPlataforma(List<JogoPlataforma> plataforma) {
-		this.plataforma = plataforma;
+	public Jogo setPlataforma(List<JogoPlataforma> jogoPlataforma) {
+		this.jogoPlataforma = jogoPlataforma;
 		return this;
 	}
 

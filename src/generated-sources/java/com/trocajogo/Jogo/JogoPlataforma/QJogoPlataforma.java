@@ -47,7 +47,7 @@ public class QJogoPlataforma extends EntityPathBase<JogoPlataforma> {
     public QJogoPlataforma(Class<? extends JogoPlataforma> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.jogo = inits.isInitialized("jogo") ? new com.trocajogo.Jogo.QJogo(forProperty("jogo")) : null;
-        this.plataforma = inits.isInitialized("plataforma") ? new com.trocajogo.Plataforma.QPlataforma(forProperty("plataforma"), inits.get("plataforma")) : null;
+        this.plataforma = inits.isInitialized("plataforma") ? new com.trocajogo.Plataforma.QPlataforma(forProperty("plataforma")) : null;
     }
 
 }

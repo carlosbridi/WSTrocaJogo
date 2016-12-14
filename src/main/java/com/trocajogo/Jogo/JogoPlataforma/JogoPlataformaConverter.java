@@ -1,9 +1,13 @@
 package com.trocajogo.Jogo.JogoPlataforma;
 
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import javax.inject.Inject;
 
 import com.data.generic.AbstractConverter;
 import com.trocajogo.Jogo.JogoRepository;
+import com.trocajogo.Plataforma.Plataforma;
 import com.trocajogo.Plataforma.PlataformaConverter;
 import com.trocajogo.Plataforma.PlataformaRepository;
 
@@ -34,7 +38,7 @@ public class JogoPlataformaConverter extends AbstractConverter<JogoPlataforma, J
 	public JogoPlataforma toEntity(JogoPlataformaDTO jogoPlataformaDTO, JogoPlataforma jogoPlataforma) {
 		return jogoPlataforma.setId(jogoPlataformaDTO.id)
 				.setJogo(jogoRepository.findByIdThrowsException(jogoPlataformaDTO.idJogo))
-				.setPlataforma(plataformaRepository.findByIdThrowsException(jogoPlataformaDTO.plataforma.id));
+				.setPlataforma(jogoPlataforma.getPlataforma());
 	}
 
 	@Override
@@ -42,7 +46,7 @@ public class JogoPlataformaConverter extends AbstractConverter<JogoPlataforma, J
 		JogoPlataformaDTO jogoPlataformaDTO = new JogoPlataformaDTO();
 		jogoPlataformaDTO.id = jogoPlataforma.getId();
 		jogoPlataformaDTO.idJogo = jogoPlataforma.getJogo().getId();
-		jogoPlataformaDTO.plataforma =  plataformaConverter.toRepresentation(jogoPlataforma.getPlataforma());
+		jogoPlataformaDTO.plataforma = plataformaConverter.toRepresentation(jogoPlataforma.getPlataforma());
 		return jogoPlataformaDTO;
 	}
 
