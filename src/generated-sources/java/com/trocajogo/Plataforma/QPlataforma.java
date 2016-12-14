@@ -18,38 +18,24 @@ public class QPlataforma extends EntityPathBase<Plataforma> {
 
     private static final long serialVersionUID = 1843768367L;
 
-    private static final PathInits INITS = PathInits.DIRECT2;
-
     public static final QPlataforma plataforma = new QPlataforma("plataforma");
 
     public final StringPath descricao = createString("descricao");
 
     public final NumberPath<Integer> id = createNumber("id", Integer.class);
 
-    public final com.trocajogo.Jogo.QJogo jogo;
-
-    public final com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma jogoPlataforma;
+    public final ListPath<com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma, com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma> jogoPlataforma = this.<com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma, com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma>createList("jogoPlataforma", com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma.class, com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma.class, PathInits.DIRECT2);
 
     public QPlataforma(String variable) {
-        this(Plataforma.class, forVariable(variable), INITS);
+        super(Plataforma.class, forVariable(variable));
     }
 
     public QPlataforma(Path<? extends Plataforma> path) {
-        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
+        super(path.getType(), path.getMetadata());
     }
 
     public QPlataforma(PathMetadata metadata) {
-        this(metadata, PathInits.getFor(metadata, INITS));
-    }
-
-    public QPlataforma(PathMetadata metadata, PathInits inits) {
-        this(Plataforma.class, metadata, inits);
-    }
-
-    public QPlataforma(Class<? extends Plataforma> type, PathMetadata metadata, PathInits inits) {
-        super(type, metadata, inits);
-        this.jogo = inits.isInitialized("jogo") ? new com.trocajogo.Jogo.QJogo(forProperty("jogo")) : null;
-        this.jogoPlataforma = inits.isInitialized("jogoPlataforma") ? new com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma(forProperty("jogoPlataforma"), inits.get("jogoPlataforma")) : null;
+        super(Plataforma.class, metadata);
     }
 
 }

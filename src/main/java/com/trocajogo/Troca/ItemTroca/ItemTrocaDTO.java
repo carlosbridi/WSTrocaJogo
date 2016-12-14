@@ -3,7 +3,6 @@ package com.trocajogo.Troca.ItemTroca;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.trocajogo.Jogo.JogoBase;
-import com.trocajogo.Jogo.JogoDTO;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaDTO;
 
 @XmlRootElement(name = "ItemTrocaDTO")

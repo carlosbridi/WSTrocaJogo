@@ -1,15 +1,15 @@
 package com.trocajogo.Plataforma;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
-import com.trocajogo.Jogo.Jogo;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 
 @XmlRootElement(name = "Plataforma")
@@ -21,15 +21,9 @@ public class Plataforma {
 	private int id;
 	private String descricao;
 	
-	@NotNull
-	@OneToOne
+	@OneToMany
 	@JoinColumn(name = "id")
-	private Jogo jogo;
-	
-	@NotNull
-	@OneToOne
-	@JoinColumn(name = "id")
-	private JogoPlataforma jogoPlataforma;
+	private List<JogoPlataforma> jogoPlataforma = new ArrayList<JogoPlataforma>();
 	
 	public Plataforma(){
 		
@@ -64,14 +58,6 @@ public class Plataforma {
 		return this;
 	}
 
-	@XmlTransient
-	public Jogo getJogo() {
-		return jogo;
-	}
-
-	public Plataforma setJogo(Jogo jogo) {
-		this.jogo = jogo;
-		return this;
-	}
+	
 	
 }

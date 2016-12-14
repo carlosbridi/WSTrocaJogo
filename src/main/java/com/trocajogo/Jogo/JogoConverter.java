@@ -31,16 +31,7 @@ public class JogoConverter extends AbstractConverter<Jogo, JogoDTO> {
 				.setCategoria(jogoDTO.categoria)
 				.setAno(jogoDTO.ano)
 				.setImagem(jogoDTO.imagem)
-				.setPlataforma(Optional.ofNullable(jogoDTO.plataforma).map(plataformas -> {
-					return plataformas.stream().map(plataforma -> {
-						if (plataforma.id != 0){
-							JogoPlataforma jogoPlat = jogoPlataformaRepository.findByIdThrowsException(plataforma.id);
-							return jogoPlataformaConverter.toEntity(plataforma, jogoPlat);
-						}else{
-							return jogoPlataformaConverter.toEntity(plataforma);
-						}
-					}).collect(Collectors.toList());
-				}).orElse(null));
+				.setPlataforma(jogoPlataformaConverter.toEntity(jogoDTO.jogoPlataforma));
 	}
 
 	@Override
@@ -53,7 +44,7 @@ public class JogoConverter extends AbstractConverter<Jogo, JogoDTO> {
 		jogoDTO.ano = jogo.getAno();
 		jogoDTO.imagem = jogo.getImagem();
 		JogoPlataformaConverter plataformaConverter = new JogoPlataformaConverter();
-		jogoDTO.plataforma =  plataformaConverter.toRepresentation(jogo.getPlataforma());
+		jogoDTO.jogoPlataforma =  plataformaConverter.toRepresentation(jogo.getPlataforma());
 		
 		return jogoDTO;
 		

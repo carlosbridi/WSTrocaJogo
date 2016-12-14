@@ -9,5 +9,5 @@ public class JogoPlataformaDTO {
 
 	public int id;
 	public int idJogo;
-	public PlataformaDTO plataforma = new PlataformaDTO();
+	public PlataformaDTO plataforma;
 }

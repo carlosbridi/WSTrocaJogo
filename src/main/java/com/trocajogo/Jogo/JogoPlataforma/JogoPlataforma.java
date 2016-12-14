@@ -4,11 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlTransient;
 
 import com.trocajogo.Jogo.Jogo;
 import com.trocajogo.Plataforma.Plataforma;
@@ -22,13 +20,13 @@ public class JogoPlataforma {
 	@Column(name = "jogoplataforma_id")
 	private int id;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "idjogo")
 	private Jogo jogo;
 	
 	@OneToOne
 	@JoinColumn(name = "plataforma_id")
-	private Plataforma plataforma;
+	private Plataforma plataforma = new Plataforma();
 	
 	public JogoPlataforma(){
 	}
@@ -56,7 +54,6 @@ public class JogoPlataforma {
 		return this;
 	}
 
-	@XmlTransient
 	public Jogo getJogoPlataforma() {
 		return jogo;
 	}

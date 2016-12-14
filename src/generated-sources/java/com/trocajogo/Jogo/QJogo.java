@@ -30,9 +30,9 @@ public class QJogo extends EntityPathBase<Jogo> {
 
     public final StringPath imagem = createString("imagem");
 
-    public final StringPath nomejogo = createString("nomejogo");
+    public final ListPath<com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma, com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma> jogoPlataforma = this.<com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma, com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma>createList("jogoPlataforma", com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma.class, com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma.class, PathInits.DIRECT2);
 
-    public final ListPath<com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma, com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma> plataforma = this.<com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma, com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma>createList("plataforma", com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma.class, com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma.class, PathInits.DIRECT2);
+    public final StringPath nomejogo = createString("nomejogo");
 
     public QJogo(String variable) {
         super(Jogo.class, forVariable(variable));
