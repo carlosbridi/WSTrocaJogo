@@ -14,10 +14,12 @@ import javax.ws.rs.core.UriInfo;
 
 import com.trocajogo.Jogo.JogoDTO;
 import com.trocajogo.Jogo.JogoRepository;
+import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioDTO;
+import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioRepository;
 import com.trocajogo.defs.TipoDef;
 
 @Path("/BuscarJogos")
-public class BuscarJogos {
+public class BuscarJogos  {
 
 	@Context
     UriInfo uriInfo;
@@ -30,7 +32,7 @@ public class BuscarJogos {
     @POST
     @Consumes(TipoDef.APPLICATION_FORM_URLENCODED)
     @Produces(TipoDef.APPLICATION_JSON)
-    public List<JogoDTO> postUsuario(MultivaluedMap<String, String> buscaJogosParams) {
+    public List<JogoDTO> buscarJogosAcervo(MultivaluedMap<String, String> buscaJogosParams) {
     	
     	String nomeJogo = buscaJogosParams.getFirst("nome");
     	int plataforma = Integer.valueOf(buscaJogosParams.getFirst("plataforma"));
@@ -44,5 +46,20 @@ public class BuscarJogos {
     		e.printStackTrace();
     		return new ArrayList<JogoDTO>();
     	}
+    }
+    
+    @Path("/JogosUsuarios")
+    @POST
+    @Consumes(TipoDef.APPLICATION_FORM_URLENCODED)
+    @Produces(TipoDef.APPLICATION_JSON)
+    public List<JogoUsuarioDTO> buscarJogosColecaoUsuarios(MultivaluedMap<String, String> buscaJogosParams) {
+    	
+    	int idUsuario = Integer.valueOf(buscaJogosParams.getFirst("idUsuario"));
+    	String nomeJogo = buscaJogosParams.getFirst("nome");
+    	int idPlataforma = Integer.valueOf(buscaJogosParams.getFirst("plataforma"));
+    	int categoria = Integer.valueOf(buscaJogosParams.getFirst("categoria"));
+    	
+    	JogoUsuarioRepository jogoUsuarioRepository = new JogoUsuarioRepository();
+    	return jogoUsuarioRepository.listarJogosUsuarios(idUsuario, nomeJogo, categoria, idPlataforma);
     }
 }

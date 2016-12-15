@@ -1,4 +1,4 @@
-package com.trocajogo;
+package com.trocajogo.Jogo;
 
 public class JogoBaseDTO {
 	public int id;

@@ -1,4 +1,4 @@
-package com.data.generic;
+package com.generic;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

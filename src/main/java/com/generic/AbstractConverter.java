@@ -1,4 +1,4 @@
-package com.data.generic;
+package com.generic;
 
 import java.util.List;
 import static java.util.stream.Collectors.toList;;

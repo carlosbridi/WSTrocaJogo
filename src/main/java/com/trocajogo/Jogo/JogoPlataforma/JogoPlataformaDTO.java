@@ -8,6 +8,5 @@ import com.trocajogo.Plataforma.PlataformaDTO;
 public class JogoPlataformaDTO {
 
 	public int id;
-	public int idJogo;
 	public PlataformaDTO plataforma;
 }

@@ -34,7 +34,6 @@ public class LoginUsuario {
     	String senha = usuarioParams.getFirst(UserFields.SENHA);
     	
     	UsuarioLogin usuarioLogin = new UsuarioLogin();
-    	
     	int idUsuario = usuarioLogin.loginUsuario(email, senha);
     	
     	return new Retorno(idUsuario, idUsuario >= 0 ? "" : "Login ou senha inválidos");

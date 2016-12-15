@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.data.generic.EntityUtils;
+import com.generic.EntityUtils;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
@@ -78,7 +78,7 @@ public class JogoUsuarioCRUD {
 			em.getTransaction().commit();
 			
 		}catch(Exception e){
-			throw new JogoUsuarioException("Erro ao remover jogo do usuario");
+			throw new JogoUsuarioException("Erro ao remover jogo do usuario: "+e.getMessage());
 		}
 		
 	}

@@ -4,7 +4,7 @@ import static com.trocajogo.Usuario.QUsuario.usuario;
 
 import org.springframework.stereotype.Repository;
 
-import com.data.generic.AbstractRepository;
+import com.generic.AbstractRepository;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
 @Repository
