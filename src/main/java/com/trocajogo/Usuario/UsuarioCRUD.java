@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import com.data.generic.EntityUtils;
-import com.data.generic.ServiceException;
+import com.generic.EntityUtils;
+import com.generic.ServiceException;
 import com.querydsl.jpa.impl.JPAQuery;
 
 

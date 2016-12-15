@@ -2,17 +2,13 @@ package com.trocajogo.Troca.ItemTroca;
 
 import javax.inject.Inject;
 
-import com.data.generic.AbstractConverter;
+import com.generic.AbstractConverter;
 import com.trocajogo.Jogo.JogoConverter;
-import com.trocajogo.Jogo.JogoRepository;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaConverter;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaRepository;
 
 public class ItemTrocaConverter extends AbstractConverter<ItemTroca, ItemTrocaDTO> {
 
-	@Inject 
-	private JogoRepository jogoRepository;
-	
 	@Inject
 	private JogoConverter jogoConverter;
 	
@@ -39,7 +35,6 @@ public class ItemTrocaConverter extends AbstractConverter<ItemTroca, ItemTrocaDT
 	@Override
 	public ItemTrocaDTO toRepresentation(ItemTroca itemTroca) {
 		jogoPlataformaConverter = new JogoPlataformaConverter();
-		jogoRepository = new JogoRepository();
 		jogoConverter = new JogoConverter();
 		
 		ItemTrocaDTO itemTrocaDTO = new ItemTrocaDTO();
@@ -48,10 +43,8 @@ public class ItemTrocaConverter extends AbstractConverter<ItemTroca, ItemTrocaDT
 		itemTrocaDTO.idUsuarioTroca = itemTroca.getIdUsuarioTroca();
 		itemTrocaDTO.jogoPlataformaOferta = jogoPlataformaConverter.toRepresentation(itemTroca.getJogoPlataformaOferta());
 		itemTrocaDTO.jogoOferta = jogoConverter.toRepresentation(itemTroca.getJogoPlataformaOferta().getJogo());
-		//itemTrocaDTO.jogoOferta = jogoConverter.toRepresentation(jogoRepository.findByIdThrowsException(itemTrocaDTO.jogoPlataformaOferta.idJogo));
 		itemTrocaDTO.jogoPlataformaTroca = jogoPlataformaConverter.toRepresentation(itemTroca.getJogoPlataformaTroca());
 		itemTrocaDTO.jogoTroca = jogoConverter.toRepresentation(itemTroca.getJogoPlataformaTroca().getJogo());
-		//itemTrocaDTO.jogoTroca = jogoConverter.toRepresentation(jogoRepository.findByIdThrowsException(itemTrocaDTO.jogoPlataformaTroca.idJogo));
 		return itemTrocaDTO;
 	}
 

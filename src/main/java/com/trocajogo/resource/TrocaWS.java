@@ -23,6 +23,7 @@ import com.trocajogo.Troca.StatusTroca;
 import com.trocajogo.Troca.Troca;
 import com.trocajogo.Troca.TrocaCRUD;
 import com.trocajogo.Troca.TrocaDTO;
+import com.trocajogo.Troca.TrocaExpcetion;
 import com.trocajogo.Troca.ItemTroca.ItemTroca;
 import com.trocajogo.defs.Retorno;
 import com.trocajogo.defs.TipoDef;
@@ -32,7 +33,6 @@ public class TrocaWS {
 	@Context
     UriInfo uriInfo;
    
-    
     @Context
     Request request;	
 	
@@ -77,14 +77,13 @@ public class TrocaWS {
     	troca.setItemTroca(itemTroca);
     	
     	try{
-    		if (trocaCrud.persistirTroca(troca) > 0){
-    			return new Retorno(1, "Troca incluída com sucesso");
+    		if (trocaCrud.inserirTroca(troca) > 0){
+    			return new Retorno(troca.getId(), "Troca incluída com sucesso");
     		}else{
     			return new Retorno(999, "Falha ao incluir troca remotamente, tente novamente mais tarde!");
     		}
-    	}catch(Exception e){
-    		e.printStackTrace(); 
-    		return new Retorno (998, "Ocorreu um erro ao tentar incluir uma troca, tente novamente mais tarde!");
+    	}catch(TrocaExpcetion e){
+    		return new Retorno (998, e.getMessage());
     	}
     }
     
@@ -95,7 +94,7 @@ public class TrocaWS {
     	int idTroca = Integer.valueOf(statusTrocaParams.getFirst("idTroca"));
     	String statusTroca = statusTrocaParams.getFirst("statusTroca");
     	
-    	StatusTroca status = null;	
+    	StatusTroca status = StatusTroca.from(statusTroca);	
     	
     	TrocaCRUD trocaCrud = new TrocaCRUD();
     	if (trocaCrud.atualizarStatusTroca(idTroca, status) > 0){

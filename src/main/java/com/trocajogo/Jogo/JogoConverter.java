@@ -1,20 +1,12 @@
 package com.trocajogo.Jogo;
 
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import javax.inject.Inject;
 
-import com.data.generic.AbstractConverter;
-import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
+import com.generic.AbstractConverter;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaConverter;
-import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaRepository;
 
 public class JogoConverter extends AbstractConverter<Jogo, JogoDTO> {
 	
-	@Inject
-	private JogoPlataformaRepository jogoPlataformaRepository;
-		
 	@Inject
 	private JogoPlataformaConverter jogoPlataformaConverter;
 	

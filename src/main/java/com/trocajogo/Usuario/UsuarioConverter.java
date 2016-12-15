@@ -1,6 +1,6 @@
 package com.trocajogo.Usuario;
 
-import com.data.generic.AbstractConverter;
+import com.generic.AbstractConverter;
 
 public class UsuarioConverter extends AbstractConverter<Usuario, UsuarioDTO> {
 

@@ -2,7 +2,7 @@ package com.trocajogo.Usuario;
 
 import javax.persistence.EntityManager;
 
-import com.data.generic.EntityUtils;
+import com.generic.EntityUtils;
 import com.querydsl.jpa.impl.JPAQuery;
 import static com.trocajogo.Usuario.QUsuario.usuario;
 

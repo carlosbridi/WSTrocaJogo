@@ -4,7 +4,7 @@ import static com.trocajogo.Troca.QTroca.troca;
 
 import java.util.List;
 
-import com.data.generic.AbstractRepository;
+import com.generic.AbstractRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 

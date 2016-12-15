@@ -1,7 +1,5 @@
 package com.trocajogo.resource;
 
-import java.sql.SQLException;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -14,9 +12,8 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
-import com.data.generic.ServiceException;
+import com.generic.ServiceException;
 import com.trocajogo.Usuario.Usuario;
-import com.trocajogo.Usuario.UsuarioConverter;
 import com.trocajogo.Usuario.UsuarioCRUD;
 import com.trocajogo.Usuario.UsuarioDTO;
 import com.trocajogo.defs.Retorno;

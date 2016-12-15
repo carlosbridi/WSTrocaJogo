@@ -2,7 +2,7 @@ package com.trocajogo.Troca;
 
 import javax.inject.Inject;
 
-import com.data.generic.AbstractConverter;
+import com.generic.AbstractConverter;
 import com.trocajogo.Troca.ItemTroca.ItemTrocaConverter;
 import com.trocajogo.Troca.ItemTroca.ItemTrocaRepository;
 

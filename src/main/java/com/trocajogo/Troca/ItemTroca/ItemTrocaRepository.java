@@ -1,9 +1,10 @@
 package com.trocajogo.Troca.ItemTroca;
 
-import com.data.generic.AbstractRepository;
 import com.querydsl.core.BooleanBuilder;
 
 import static com.trocajogo.Troca.ItemTroca.QItemTroca.itemTroca;
+
+import com.generic.AbstractRepository;
 
 public class ItemTrocaRepository extends AbstractRepository<ItemTroca, QItemTroca> {
 

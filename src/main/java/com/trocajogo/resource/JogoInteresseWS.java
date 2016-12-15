@@ -13,7 +13,6 @@ import javax.ws.rs.core.UriInfo;
 
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaCRUD;
-import com.trocajogo.Jogo.JogoUsuario.JogoUsuario;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioCRUD;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioException;
 import com.trocajogo.defs.Retorno;
@@ -62,8 +61,7 @@ public class JogoInteresseWS {
 			@QueryParam("idJogoPlataforma") int idJogoPlataforma) {
 
 		JogoUsuarioCRUD jogoUsuarioCRUD = new JogoUsuarioCRUD();
-		JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
-
+		
 		try {
 			jogoUsuarioCRUD.removerJogoUsuario(idUsuario, idJogoPlataforma, true);
 			return new Retorno(1, "Jogo removido com sucesso!");

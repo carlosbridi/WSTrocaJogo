@@ -15,7 +15,6 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
-import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaCRUD;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaRepository;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioCRUD;
 import com.trocajogo.Jogo.JogoUsuario.JogoUsuarioDTO;
@@ -38,7 +37,7 @@ public class JogoColecaoWS {
     @Produces(TipoDef.APPLICATION_JSON)
     public List<JogoUsuarioDTO> obterColecaoJogosUsuario(@QueryParam("idUsuario") int idUsuario) {
     	JogoUsuarioRepository jogoRepository = new JogoUsuarioRepository();
-    	return jogoRepository.listarJogos(idUsuario);
+    	return jogoRepository.listarJogosColecao(idUsuario);
     }
     
     @POST
