@@ -50,14 +50,14 @@ public class TrocaCRUD {
 	
 	
 	public int atualizarStatusTroca(int idTroca, StatusTroca status){
+		TrocaRepository trocaRepository = new TrocaRepository();
+		Troca troca = trocaRepository.findByIdThrowsException(idTroca);
+
 		if (status.toString().equals(StatusTroca.CONCLUIDA.toString())){
-			TrocaConcluida trocaConcluida = new TrocaConcluida(idTroca);
+			TrocaConcluida trocaConcluida = new TrocaConcluida(troca);
 			trocaConcluida.efetuarTroca();
 		}
 
-		TrocaRepository trocaRepository = new TrocaRepository();
-		Troca troca = trocaRepository.findByIdThrowsException(idTroca);
-		
 		troca.setStatusTroca(status);
 		return this.persistirTroca(troca);
 	}
