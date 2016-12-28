@@ -10,7 +10,7 @@ public class JogoUsuarioDTO {
 	public int id;
 	public int idUsuario;
 	public String nomeUsuario;
-	public JogoBase jogoDTO;
+	public JogoBase jogo;
 	public JogoPlataformaDTO jogoPlataforma;
 	public boolean interesse;	
 }

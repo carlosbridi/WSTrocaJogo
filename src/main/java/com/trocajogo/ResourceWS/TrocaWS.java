@@ -1,4 +1,4 @@
-package com.trocajogo.resource;
+package com.trocajogo.ResourceWS;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -38,9 +38,9 @@ public class TrocaWS {
 	
     @GET
     @Produces(TipoDef.APPLICATION_JSON)
-    public List<TrocaDTO> buscarTrocasUsuario(@QueryParam("idUsuario") int idUsusario) {
+    public List<TrocaDTO> buscarTrocasUsuario(@QueryParam("idUsuario") int idUsuario) {
         TrocaCRUD trocaCRUD = new TrocaCRUD();
-        return trocaCRUD.listarTrocasUsuario(idUsusario);
+        return trocaCRUD.listarTrocasUsuario(idUsuario > 0 ? idUsuario : 1);
     }
     
     @PUT

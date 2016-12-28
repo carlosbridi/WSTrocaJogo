@@ -10,7 +10,9 @@ import com.trocajogo.Troca.ItemTroca.ItemTrocaDTO;
 public class TrocaDTO {
 	public int id; 
     public int idUsuarioOferta; 
+    public String nomeUsuarioOferta;
     public int idUsuarioTroca; 
+    public String nomeUsuarioTroca;
     public ItemTrocaDTO itemTroca;
     public Date dataTroca;
     public StatusTroca statusTroca;

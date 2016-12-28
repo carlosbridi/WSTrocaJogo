@@ -44,7 +44,7 @@ public class JogoUsuarioConverter extends AbstractConverter<JogoUsuario, JogoUsu
 		jogoUsuarioDTO.interesse = jogoUsuario.isInteresse();
 		
 		JogoConverter jogoConverter = new JogoConverter();
-		jogoUsuarioDTO.jogoDTO = jogoConverter.toRepresentation(jogoUsuario.getJogoPlataforma().getJogo());
+		jogoUsuarioDTO.jogo = jogoConverter.toRepresentation(jogoUsuario.getJogoPlataforma().getJogo());
 		
 		JogoPlataformaConverter jogoPlataformaConverter = new JogoPlataformaConverter();
 		jogoUsuarioDTO.jogoPlataforma = jogoPlataformaConverter.toRepresentation(jogoUsuario.getJogoPlataforma());

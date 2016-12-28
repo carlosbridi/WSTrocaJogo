@@ -1,4 +1,4 @@
-package com.trocajogo.resource;
+package com.trocajogo.ResourceWS;
 
 import java.util.List;
 

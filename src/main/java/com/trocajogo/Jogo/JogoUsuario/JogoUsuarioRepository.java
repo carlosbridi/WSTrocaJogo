@@ -36,7 +36,9 @@ public class JogoUsuarioRepository extends AbstractRepository<JogoUsuario, QJogo
 		BooleanBuilder booleanBuilder = new BooleanBuilder();
 		booleanBuilder.and(jogoUsuario.usuario.id.ne(idUsuario));
 		booleanBuilder.and(jogoUsuario.jogoPlataforma.jogo.nomejogo.toUpperCase().like("%" + nomeJogo.toUpperCase() + "%"));
-		booleanBuilder.and(jogoUsuario.jogoPlataforma.jogo.categoria.eq(categoria));
+		
+		if (categoria > 0)
+			booleanBuilder.and(jogoUsuario.jogoPlataforma.jogo.categoria.eq(categoria));
 		
 		List<JogoUsuario> listaJogoUsuario = find(booleanBuilder.getValue());
 		return jogoUsuarioConverter.toRepresentation(listaJogoUsuario);

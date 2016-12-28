@@ -27,8 +27,12 @@ public class Troca {
 	@Id
 	@Column(name = "idtroca")
 	private int id; // Id Troca
+	
+	@Column(name = "idusuariooferta")
     private int idUsuarioOferta; // Meu ID
-    private int idUsuarioTroca; // ID Usuário remoto
+	
+	@Column(name = "idusuariotroca")
+	private int idUsuarioTroca; // ID Usuário remoto
     
     @OneToOne(mappedBy = "troca", cascade = CascadeType.ALL)
     private ItemTroca itemTroca;

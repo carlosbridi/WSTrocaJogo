@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import com.generic.AbstractConverter;
 import com.trocajogo.Troca.ItemTroca.ItemTrocaConverter;
 import com.trocajogo.Troca.ItemTroca.ItemTrocaRepository;
+import com.trocajogo.Usuario.UsuarioRepository;
 
 public class TrocaConverter extends AbstractConverter<Troca, TrocaDTO> {
 
@@ -13,6 +14,9 @@ public class TrocaConverter extends AbstractConverter<Troca, TrocaDTO> {
 	
 	@Inject
 	private ItemTrocaConverter itemTrocaConverter;
+	
+	@Inject
+	private UsuarioRepository usuarioRepository;
 	
 	@Override
 	public Troca toEntity(TrocaDTO trocaDTO) {
@@ -34,11 +38,14 @@ public class TrocaConverter extends AbstractConverter<Troca, TrocaDTO> {
 	public TrocaDTO toRepresentation(Troca troca) {
 		itemTrocaConverter = new ItemTrocaConverter();
 		itemTrocaRepository = new ItemTrocaRepository();
+		usuarioRepository = new UsuarioRepository();
 		
 		TrocaDTO trocaDTO = new TrocaDTO();
 		trocaDTO.id = troca.getId();
 		trocaDTO.idUsuarioOferta = troca.getIdUsuarioOferta();
+		trocaDTO.nomeUsuarioOferta = usuarioRepository.findByIdThrowsException(trocaDTO.idUsuarioOferta).getNome();
 		trocaDTO.idUsuarioTroca = troca.getIdUsuarioTroca();
+		trocaDTO.nomeUsuarioTroca = usuarioRepository.findByIdThrowsException(trocaDTO.idUsuarioTroca).getNome();
 		trocaDTO.dataTroca = troca.getDataTroca();
 		trocaDTO.itemTroca = itemTrocaConverter.toRepresentation(itemTrocaRepository.findByIdThrowsExpcetion(troca.getId()));
 		trocaDTO.statusTroca = troca.getStatusTroca();
