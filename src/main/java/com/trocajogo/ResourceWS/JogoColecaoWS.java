@@ -27,7 +27,7 @@ import com.trocajogo.defs.TipoDef;
 public class JogoColecaoWS {
 
 	@Context
-    UriInfo uriIØnfo;
+    UriInfo uriInfo;
    
     
     @Context
