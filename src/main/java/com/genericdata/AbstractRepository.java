@@ -1,4 +1,4 @@
-package com.generic;
+package com.genericdata;
 
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +28,7 @@ public abstract class AbstractRepository<T,E extends EntityPath<T>>  {
 	}
 
 	public boolean exists(Predicate... predicates) {
-		EntityManager em = EntityUtils.getEntityManager();
+		EntityManager em = EntityConnectionUtils.getEntityManager();
 		JPAQuery<T> query = new JPAQuery<>(em);
 		query.from(getEntityPath());
 		if (!Objects.isNull(predicates) && predicates.length > 0) {
@@ -46,7 +46,7 @@ public abstract class AbstractRepository<T,E extends EntityPath<T>>  {
 	}
 
 	public T findOne(Predicate... predicates) {
-		EntityManager em = EntityUtils.getEntityManager();
+		EntityManager em = EntityConnectionUtils.getEntityManager();
 		JPAQuery<T> query = new JPAQuery<>(em);
 		query.from(getEntityPath())
 			.where(predicates);
@@ -62,7 +62,7 @@ public abstract class AbstractRepository<T,E extends EntityPath<T>>  {
 	}
 	
 	public T findOne(OrderSpecifier<?> order, Predicate... predicates) {
-		EntityManager em = EntityUtils.getEntityManager();
+		EntityManager em = EntityConnectionUtils.getEntityManager();
 		JPAQuery<T> query = new JPAQuery<>(em);
 		query.from(getEntityPath())
 			.where(predicates)
@@ -71,7 +71,7 @@ public abstract class AbstractRepository<T,E extends EntityPath<T>>  {
 	}
 	
 	public List<T> find(Predicate... predicates) {
-		EntityManager em = EntityUtils.getEntityManager();
+		EntityManager em = EntityConnectionUtils.getEntityManager();
 		JPAQuery<T> query = new JPAQuery<>(em);
 		query.from(getEntityPath());
 		query.where(predicates);

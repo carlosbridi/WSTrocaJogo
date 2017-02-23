@@ -12,7 +12,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
-import com.generic.ServiceException;
+import com.genericdata.ServiceException;
 import com.trocajogo.Usuario.Usuario;
 import com.trocajogo.Usuario.UsuarioCRUD;
 import com.trocajogo.Usuario.UsuarioDTO;
@@ -32,7 +32,7 @@ public class UsuarioWS {
 	
     @GET
     @Produces(TipoDef.APPLICATION_JSON)
-    public UsuarioDTO obterDadosUsuario(@QueryParam("idUsuario") int idUsuario) {
+    public UsuarioDTO obterDadosUsuario(@QueryParam("idUsuario") Long idUsuario) {
     	UsuarioCRUD dao = new UsuarioCRUD();
     	return dao.buscarDadosUsuario(idUsuario);
 	}
@@ -41,7 +41,7 @@ public class UsuarioWS {
     @Consumes(TipoDef.APPLICATION_FORM_URLENCODED)
     @Produces(TipoDef.APPLICATION_JSON)
     public Retorno postUsuario(MultivaluedMap<String, String> usuarioParams) {
-    	Integer id = Integer.valueOf(usuarioParams.getFirst(UserFields.ID));
+    	Long id = Long.valueOf(usuarioParams.getFirst(UserFields.ID));
     	String nomeusuario = usuarioParams.getFirst(UserFields.NOMEUSUARIO);
     	String nome = usuarioParams.getFirst(UserFields.NOME);
     	String telefone = usuarioParams.getFirst(UserFields.TELEFONE);
@@ -73,7 +73,7 @@ public class UsuarioWS {
     @Consumes(TipoDef.APPLICATION_FORM_URLENCODED)
     @Produces(TipoDef.APPLICATION_JSON)
     public Retorno atualizarDadosEnderecoUsuario(MultivaluedMap<String, String> usuarioParams) {
-    	Integer id = Integer.valueOf(usuarioParams.getFirst(UserFields.ID));
+    	Long id = Long.valueOf(usuarioParams.getFirst(UserFields.ID));
     	
     	String cep = usuarioParams.getFirst(UserFields.CEP);
     	String logradouro = usuarioParams.getFirst(UserFields.LOGRADOURO);
@@ -96,11 +96,13 @@ public class UsuarioWS {
     	try{
 	    	UsuarioCRUD userdao = new UsuarioCRUD();
 	    	
-	    	if (userdao.atualizarDadosComplementares(usuario) > 0){
+	    	try{
+	    		userdao.atualizarDadosComplementares(usuario);
 	    		return new Retorno(ReturnCodes.OK, "Usuário atualizado com sucesso");
-	    	}else{
+	    	}catch(Exception e){
 	    		return new Retorno(ReturnCodes.ATUALIZARDADOSENDERECO, "Ocorreu um erro ao atualizar os dados de endereço!");
-	    	}	    	
+	    	}
+	    	    	
 	    }catch(Exception e){
     		e.printStackTrace();
     		return new Retorno(0, "Erro ao atualizar dados de endereço do usuário.");

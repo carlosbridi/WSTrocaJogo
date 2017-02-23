@@ -33,7 +33,7 @@ public class JogoInteresseWS {
     public Retorno inserirJogoUsuario(MultivaluedMap<String, String> buscaJogosParams) {
     	
     	int idJogoPlataforma = Integer.valueOf(buscaJogosParams.getFirst("idJogoPlataforma"));
-    	int idUsuario = Integer.valueOf(buscaJogosParams.getFirst("idUsuario"));
+    	Long idUsuario = Long.valueOf(buscaJogosParams.getFirst("idUsuario"));
     	
     	JogoPlataformaCRUD jogoPlataformaCRUD = new JogoPlataformaCRUD();
     	JogoUsuarioCRUD jogoUsuarioCrud = new JogoUsuarioCRUD();
@@ -57,8 +57,8 @@ public class JogoInteresseWS {
     @DELETE
     @Consumes(TipoDef.APPLICATION_FORM_URLENCODED)
     @Produces(TipoDef.APPLICATION_JSON)
-	public Retorno removerJogoUsuario(@QueryParam("idUsuario") int idUsuario,
-			@QueryParam("idJogoPlataforma") int idJogoPlataforma) {
+	public Retorno removerJogoUsuario(@QueryParam("idUsuario") Long idUsuario,
+									  @QueryParam("idJogoPlataforma") int idJogoPlataforma) {
 
 		JogoUsuarioCRUD jogoUsuarioCRUD = new JogoUsuarioCRUD();
 		

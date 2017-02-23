@@ -37,10 +37,10 @@ public class ItemTroca {
 	private JogoPlataforma jogoPlataformaOferta;	
 	
 	@Column(name = "idusuariooferta")
-	private int idUsuarioOferta;
+	private Long idUsuarioOferta;
 	
 	@Column(name = "idusuariotroca")
-	private int idUsuarioTroca;
+	private Long idUsuarioTroca;
 
 	public ItemTroca(){
 		
@@ -65,20 +65,20 @@ public class ItemTroca {
 	}
 
 	
-	public int getIdUsuarioOferta() {
+	public Long getIdUsuarioOferta() {
 		return idUsuarioOferta;
 	}
 
-	public ItemTroca setIdUsuarioOferta(int idUsuarioOferta) {
+	public ItemTroca setIdUsuarioOferta(Long idUsuarioOferta) {
 		this.idUsuarioOferta = idUsuarioOferta;
 		return this;
 	}
 
-	public int getIdUsuarioTroca() {
+	public Long getIdUsuarioTroca() {
 		return idUsuarioTroca;
 	}
 
-	public ItemTroca setIdUsuarioTroca(int idUsuarioTroca) {
+	public ItemTroca setIdUsuarioTroca(Long idUsuarioTroca) {
 		this.idUsuarioTroca = idUsuarioTroca;
 		return this;
 	}

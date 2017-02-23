@@ -5,7 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import com.generic.EntityUtils;
+import com.genericdata.EntityConnectionUtils;
 
 public class TrocaCRUD {
 	
@@ -31,7 +31,7 @@ public class TrocaCRUD {
 	}
 	
 	private int persistirTroca(Troca troca){
-		EntityManager em = EntityUtils.getEntityManager();
+		EntityManager em = EntityConnectionUtils.getEntityManager();
 		em.getTransaction().begin();
 		
 		try{
@@ -63,7 +63,7 @@ public class TrocaCRUD {
 	}
 	
 	
-	public List<TrocaDTO> listarTrocasUsuario(int idUsuario){
+	public List<TrocaDTO> listarTrocasUsuario(Long idUsuario){
 		trocaRepository = new TrocaRepository();
 		trocaConverter = new TrocaConverter();
 		return trocaConverter.toRepresentation(trocaRepository.obterTrocasUsuario(idUsuario));

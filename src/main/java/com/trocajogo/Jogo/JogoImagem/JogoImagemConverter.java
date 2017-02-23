@@ -1,6 +1,6 @@
 package com.trocajogo.Jogo.JogoImagem;
 
-import com.generic.AbstractConverter;
+import com.genericdata.AbstractConverter;
 
 public class JogoImagemConverter extends AbstractConverter<JogoImagem, JogoImagemDTO> {
 

@@ -7,12 +7,13 @@ import java.sql.SQLException;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import com.generic.EntityUtils;
-import com.generic.ServiceException;
+import com.genericdata.AbstractService;
+import com.genericdata.EntityConnectionUtils;
+import com.genericdata.ServiceException;
 import com.querydsl.jpa.impl.JPAQuery;
 
 
-public class UsuarioCRUD {
+public class UsuarioCRUD extends AbstractService<Usuario> {
 	
 	@Inject
 	private UsuarioConverter usuarioConverter;
@@ -26,25 +27,25 @@ public class UsuarioCRUD {
 	}
 	
 	protected boolean emailCadastrado(Usuario usuarioInclusao){
-		JPAQuery<Usuario> query = new JPAQuery<>(EntityUtils.getEntityManager());
+		JPAQuery<Usuario> query = new JPAQuery<>(EntityConnectionUtils.getEntityManager());
 		Usuario anyUsuario = query.from(usuario).where(usuario.equalsEmailCadastrado(usuarioInclusao)).fetchFirst();
 		return anyUsuario == null;
 	}
 	
 	protected boolean nomeUsuarioCadastrado(Usuario usuarioInclusao){
-		JPAQuery<Usuario> query = new JPAQuery<>(EntityUtils.getEntityManager());
+		JPAQuery<Usuario> query = new JPAQuery<>(EntityConnectionUtils.getEntityManager());
 		Usuario anyUsuario = query.from(usuario).where(usuario.equalsNomeUsuarioCadastrado(usuarioInclusao)).fetchFirst();
 		return anyUsuario == null;
 	}
 	
-	public int persistirUsuario(Usuario user)  {
-		this.validarChaveUsuarioCadastrado(user);
-		return this.save(user);
+	public Usuario persistirUsuario(Usuario user)  {
+		//this.validarChaveUsuarioCadastrado(user);
+		return super.save(user);
 	}
 	
 	private void validarChaveUsuarioCadastrado(Usuario usuarioInclusao){
 		Usuario anyUsuario = null;
-		JPAQuery<Usuario> query = new JPAQuery<>(EntityUtils.getEntityManager());
+		JPAQuery<Usuario> query = new JPAQuery<>(EntityConnectionUtils.getEntityManager());
 		
 		anyUsuario = query.from(usuario).where(usuario.equalsNomeUsuarioCadastrado(usuarioInclusao)).fetchFirst();
 		if (!(anyUsuario == null))
@@ -54,30 +55,30 @@ public class UsuarioCRUD {
 		if (!(anyUsuario == null))
 			throw new ServiceException("Email já cadastrado");
 	}
-		
-	private int save(Usuario usuario){
-		EntityManager em = EntityUtils.getEntityManager();
-		try{
-			em.getTransaction().begin();
-			if (usuario.getId() == 0)
-				em.persist(usuario);	
-			else
-				em.merge(usuario);
-			em.getTransaction().commit();
-		}catch(Exception e){
-			em.getTransaction().rollback();
-			em.close();
-		}		
-		return usuario.getId();
-	}
+//		
+//	private int save(Usuario usuario){
+//		EntityManager em = EntityConnectionUtils.getEntityManager();
+//		try{
+//			em.getTransaction().begin();
+//			if (usuario.getId() == 0)
+//				em.persist(usuario);	
+//			else
+//				em.merge(usuario);
+//			em.getTransaction().commit();
+//		}catch(Exception e){
+//			em.getTransaction().rollback();
+//			em.close();
+//		}		
+//		return usuario.getId();
+//	}
 	
-	public UsuarioDTO buscarDadosUsuario(int id) throws ServiceException{
+	public UsuarioDTO buscarDadosUsuario(Long id) throws ServiceException{
 		UsuarioRepository repository = new UsuarioRepository();
 		Usuario usuario = repository.findByIdThrowsException(id);
 		return usuarioConverter.toRepresentation(usuario);
 	}
 	
-	public int atualizarDadosComplementares(Usuario usuario) throws SQLException, ServiceException{
+	public Usuario atualizarDadosComplementares(Usuario usuario) throws SQLException, ServiceException{
 		Usuario userDB = usuarioConverter.toEntity(this.buscarDadosUsuario(usuario.getId()));
 		userDB.setCep(usuario.getCep())
 		   .setLogradouro(usuario.getLogradouro())
@@ -87,7 +88,7 @@ public class UsuarioCRUD {
 		   .setEstado(usuario.getEstado())
 		   .setCidade(usuario.getCidade());
 		
-		return this.persistirUsuario(userDB);
+		return super.save(userDB);
 	}
 	
 }

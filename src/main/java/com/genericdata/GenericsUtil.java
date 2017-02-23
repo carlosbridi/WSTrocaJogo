@@ -1,4 +1,4 @@
-package com.generic;
+package com.genericdata;
 
 import java.lang.reflect.ParameterizedType;
 

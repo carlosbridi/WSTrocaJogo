@@ -52,7 +52,7 @@ public class QJogoUsuario extends EntityPathBase<JogoUsuario> {
         this.usuario = inits.isInitialized("usuario") ? new com.trocajogo.Usuario.QUsuario(forProperty("usuario")) : null;
     }
 
-    public com.querydsl.core.types.Predicate jogoUsuarioCadastrado(Integer idUsuario, Integer idJogoPlataforma) {
+    public com.querydsl.core.types.Predicate jogoUsuarioCadastrado(Long idUsuario, Integer idJogoPlataforma) {
         return JogoUsuario.jogoUsuarioCadastrado(this, idUsuario, idJogoPlataforma);
     }
 

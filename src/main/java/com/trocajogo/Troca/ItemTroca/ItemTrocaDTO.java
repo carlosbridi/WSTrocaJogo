@@ -12,6 +12,6 @@ public class ItemTrocaDTO {
 	public JogoBase jogoTroca;
 	public JogoPlataformaDTO jogoPlataformaOferta;
 	public JogoBase jogoOferta;
-	public int idUsuarioOferta;
-	public int idUsuarioTroca;
+	public Long idUsuarioOferta;
+	public Long idUsuarioTroca;
 }

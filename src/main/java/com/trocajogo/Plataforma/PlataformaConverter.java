@@ -1,6 +1,6 @@
 package com.trocajogo.Plataforma;
 
-import com.generic.AbstractConverter;
+import com.genericdata.AbstractConverter;
 
 public class PlataformaConverter extends AbstractConverter<Plataforma, PlataformaDTO> {
 

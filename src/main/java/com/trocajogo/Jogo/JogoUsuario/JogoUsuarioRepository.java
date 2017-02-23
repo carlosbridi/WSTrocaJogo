@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.generic.AbstractRepository;
+import com.genericdata.AbstractRepository;
 import com.querydsl.core.BooleanBuilder;
 
 public class JogoUsuarioRepository extends AbstractRepository<JogoUsuario, QJogoUsuario> {
@@ -24,7 +24,7 @@ public class JogoUsuarioRepository extends AbstractRepository<JogoUsuario, QJogo
 		return jogoUsuario;
 	}
 
-	public List<JogoUsuarioDTO> listarJogosColecao(int idUsuario){
+	public List<JogoUsuarioDTO> listarJogosColecao(Long idUsuario){
 		BooleanBuilder booleanBuilder = new BooleanBuilder();
 		booleanBuilder.and(jogoUsuario.usuario.id.eq(idUsuario));
 		
@@ -32,7 +32,7 @@ public class JogoUsuarioRepository extends AbstractRepository<JogoUsuario, QJogo
 		return jogoUsuarioConverter.toRepresentation(listaJogoUsuario);
 	}
 	
-	public List<JogoUsuarioDTO> listarJogosUsuarios(int idUsuario, String nomeJogo, int categoria, int idPlataforma){
+	public List<JogoUsuarioDTO> listarJogosUsuarios(Long idUsuario, String nomeJogo, int categoria, int idPlataforma){
 		BooleanBuilder booleanBuilder = new BooleanBuilder();
 		booleanBuilder.and(jogoUsuario.usuario.id.ne(idUsuario));
 		booleanBuilder.and(jogoUsuario.jogoPlataforma.jogo.nomejogo.toUpperCase().like("%" + nomeJogo.toUpperCase() + "%"));

@@ -2,7 +2,7 @@ package com.trocajogo.Plataforma;
 
 public class PlataformaDTO {
 	
-	public int id;
+	public Long id;
 	public String descricao;
 	
 }

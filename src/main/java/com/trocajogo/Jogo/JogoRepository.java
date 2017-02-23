@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.generic.AbstractRepository;
+import com.genericdata.AbstractRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 

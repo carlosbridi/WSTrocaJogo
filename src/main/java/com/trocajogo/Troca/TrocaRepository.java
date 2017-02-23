@@ -4,7 +4,7 @@ import static com.trocajogo.Troca.QTroca.troca;
 
 import java.util.List;
 
-import com.generic.AbstractRepository;
+import com.genericdata.AbstractRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
@@ -21,7 +21,7 @@ public class TrocaRepository extends AbstractRepository<Troca, QTroca> {
 	}
 
 	
-	public List<Troca> obterTrocasUsuario(int idUsuario){
+	public List<Troca> obterTrocasUsuario(Long idUsuario){
 		BooleanBuilder booleanBuilder = new BooleanBuilder();
 		booleanBuilder.and(troca.idUsuarioOferta.eq(idUsuario));
 		

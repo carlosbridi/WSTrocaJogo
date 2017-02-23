@@ -1,4 +1,4 @@
-package com.generic;
+package com.genericdata;
 
 public class ServiceException extends RuntimeException {
 

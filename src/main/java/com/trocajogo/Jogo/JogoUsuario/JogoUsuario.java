@@ -56,7 +56,7 @@ public class JogoUsuario {
 	}
 	
 	@QueryDelegate(JogoUsuario.class)
-	protected static Predicate jogoUsuarioCadastrado(QJogoUsuario qJogoUsuario, int idUsuario, int idJogoPlataforma) {
+	protected static Predicate jogoUsuarioCadastrado(QJogoUsuario qJogoUsuario, Long idUsuario, int idJogoPlataforma) {
 		BooleanBuilder builder = new BooleanBuilder();
 		builder.and(qJogoUsuario.usuario.id.eq(idUsuario))
 			   .and(qJogoUsuario.jogoPlataforma.id.eq(idJogoPlataforma));

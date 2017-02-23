@@ -29,10 +29,10 @@ public class Troca {
 	private int id; // Id Troca
 	
 	@Column(name = "idusuariooferta")
-    private int idUsuarioOferta; // Meu ID
+    private Long idUsuarioOferta; // Meu ID
 	
 	@Column(name = "idusuariotroca")
-	private int idUsuarioTroca; // ID Usuário remoto
+	private Long idUsuarioTroca; // ID Usuário remoto
     
     @OneToOne(mappedBy = "troca", cascade = CascadeType.ALL)
     private ItemTroca itemTroca;
@@ -53,20 +53,20 @@ public class Troca {
 		return this;
 	}
 	
-	public int getIdUsuarioOferta() {
+	public Long getIdUsuarioOferta() {
 		return idUsuarioOferta;
 	}
 	
-	public Troca setIdUsuarioOferta(int idUsuarioOferta) {
+	public Troca setIdUsuarioOferta(Long idUsuarioOferta) {
 		this.idUsuarioOferta = idUsuarioOferta;
 		return this;
 	}
 	
-	public int getIdUsuarioTroca() {
+	public Long getIdUsuarioTroca() {
 		return idUsuarioTroca;
 	}
 	
-	public Troca setIdUsuarioTroca(int idUsuarioTroca) {
+	public Troca setIdUsuarioTroca(Long idUsuarioTroca) {
 		this.idUsuarioTroca = idUsuarioTroca;
 		return this;
 	}

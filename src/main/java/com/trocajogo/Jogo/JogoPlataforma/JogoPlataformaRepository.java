@@ -2,8 +2,8 @@ package com.trocajogo.Jogo.JogoPlataforma;
 
 import static com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma.jogoPlataforma;
 
-import com.generic.AbstractRepository;
-import com.generic.ServiceException;
+import com.genericdata.AbstractRepository;
+import com.genericdata.ServiceException;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
 public class JogoPlataformaRepository extends AbstractRepository<JogoPlataforma, QJogoPlataforma> {

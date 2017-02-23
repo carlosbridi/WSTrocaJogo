@@ -10,15 +10,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.genericdata.EntityId;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 
 @XmlRootElement(name = "Plataforma")
 @Entity
 @Table(name="plataforma")
-public class Plataforma {
+public class Plataforma implements EntityId<Long> {
 
 	@Id
-	private int id;
+	private Long id;
 	private String descricao;
 	
 	@OneToMany
@@ -29,22 +30,23 @@ public class Plataforma {
 		
 	}
 	
-	public Plataforma(int id, String descricao) {
+	public Plataforma(Long id, String descricao) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 	}
 
-	public Plataforma(int idPlataforma){
+	public Plataforma(Long idPlataforma){
 		super();
 		this.id = idPlataforma;
 	}
 	
-	public int getId() {
+	@Override
+	public Long getId() {
 		return id;
 	}
 	
-	public Plataforma setId(int id) {
+	public Plataforma setId(Long id) {
 		this.id = id;
 		return this;
 	}

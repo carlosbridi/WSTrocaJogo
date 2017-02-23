@@ -2,8 +2,8 @@ package com.trocajogo.Jogo.JogoImagem;
 
 import static com.trocajogo.Jogo.JogoImagem.QJogoImagem.jogoImagem;
 
-import com.generic.AbstractRepository;
-import com.generic.ServiceException;
+import com.genericdata.AbstractRepository;
+import com.genericdata.ServiceException;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
 public class JogoImagemRepository extends AbstractRepository<JogoImagem, QJogoImagem> {

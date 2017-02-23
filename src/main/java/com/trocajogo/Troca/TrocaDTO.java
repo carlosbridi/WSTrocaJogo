@@ -9,9 +9,9 @@ import com.trocajogo.Troca.ItemTroca.ItemTrocaDTO;
 @XmlRootElement(name = "TrocaDTO")
 public class TrocaDTO {
 	public int id; 
-    public int idUsuarioOferta; 
+    public Long idUsuarioOferta; 
     public String nomeUsuarioOferta;
-    public int idUsuarioTroca; 
+    public Long idUsuarioTroca; 
     public String nomeUsuarioTroca;
     public ItemTrocaDTO itemTroca;
     public Date dataTroca;

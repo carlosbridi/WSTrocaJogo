@@ -4,7 +4,7 @@ import static com.trocajogo.Usuario.QUsuario.usuario;
 
 import org.springframework.stereotype.Repository;
 
-import com.generic.AbstractRepository;
+import com.genericdata.AbstractRepository;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
 @Repository
@@ -15,7 +15,7 @@ public class UsuarioRepository extends AbstractRepository<Usuario, QUsuario> {
 		return usuario;
 	}
 
-	public Usuario findByIdThrowsException(Integer id) {
+	public Usuario findByIdThrowsException(Long id) {
 		BooleanExpression predicate = usuario.id.eq(id);
 		return findOneThrowsException(predicate);
 	}

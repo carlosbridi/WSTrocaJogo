@@ -38,7 +38,7 @@ public class TrocaWS {
 	
     @GET
     @Produces(TipoDef.APPLICATION_JSON)
-    public List<TrocaDTO> buscarTrocasUsuario(@QueryParam("idUsuario") int idUsuario) {
+    public List<TrocaDTO> buscarTrocasUsuario(@QueryParam("idUsuario") Long idUsuario) {
         TrocaCRUD trocaCRUD = new TrocaCRUD();
         return trocaCRUD.listarTrocasUsuario(idUsuario > 0 ? idUsuario : 1);
     }
@@ -53,8 +53,8 @@ public class TrocaWS {
     	
     	Troca troca = new Troca();
     	troca.setId(Integer.valueOf(trocaParams.getFirst("idTroca")));
-    	troca.setIdUsuarioOferta(Integer.valueOf(trocaParams.getFirst("idUsuarioOferta")));
-    	troca.setIdUsuarioTroca(Integer.valueOf(trocaParams.getFirst("idUsuarioTroca")));
+    	troca.setIdUsuarioOferta(Long.valueOf(trocaParams.getFirst("idUsuarioOferta")));
+    	troca.setIdUsuarioTroca(Long.valueOf(trocaParams.getFirst("idUsuarioTroca")));
     	
     	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     	java.util.Date date = dateFormat.parse(trocaParams.getFirst("dataTroca"));

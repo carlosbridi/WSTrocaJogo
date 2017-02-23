@@ -2,8 +2,8 @@ package com.trocajogo.Plataforma;
 
 import static com.trocajogo.Plataforma.QPlataforma.plataforma;
 
-import com.generic.AbstractRepository;
-import com.generic.ServiceException;
+import com.genericdata.AbstractRepository;
+import com.genericdata.ServiceException;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
 public class PlataformaRepository extends AbstractRepository<Plataforma, QPlataforma>{
@@ -13,7 +13,7 @@ public class PlataformaRepository extends AbstractRepository<Plataforma, QPlataf
 		return plataforma;
 	}
 
-	public Plataforma findByIdThrowsException(Integer id) throws ServiceException {
+	public Plataforma findByIdThrowsException(Long id) throws ServiceException {
 		BooleanExpression predicate = plataforma.id.eq(id);
 		return findOneThrowsException(predicate);
 	}

@@ -2,7 +2,7 @@ package com.trocajogo.Jogo;
 
 import javax.inject.Inject;
 
-import com.generic.AbstractConverter;
+import com.genericdata.AbstractConverter;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataformaConverter;
 
 public class JogoConverter extends AbstractConverter<Jogo, JogoDTO> {

@@ -1,6 +1,9 @@
 package com.trocajogo.Usuario;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.genericdata.EntityId;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.annotations.QueryDelegate;
 import com.querydsl.core.types.Predicate;
@@ -18,11 +22,11 @@ import com.querydsl.core.types.Predicate;
 				  allocationSize = 1, initialValue = 1)
 @Entity
 @Table(name="usuario")
-public class Usuario {
+public class Usuario implements EntityId<Long> {
 	
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuarioid_seq")
 	@Id
-	private int id;
+	private Long id;
 	private String nomeUsuario; //nickname
 	private String nome; // Nome do Usu�rio - ok
 	private String senha; // Senha do Usu�rio
@@ -38,12 +42,11 @@ public class Usuario {
     private String estado;
     private String cidade;
 	 
-	
-	public Usuario() {
+    public Usuario() {
 		
 	}
 	
-	public Usuario(int id, String nomeUsuario, String nome, String senha,
+	public Usuario(Long id, String nomeUsuario, String nome, String senha,
 			String email, String telefone, String cep, String logradouro,
 			String numero, String complemento, String bairro, String estado,
 			String cidade) {
@@ -87,12 +90,14 @@ public class Usuario {
 					
 		return builder.getValue();
 	}
-	public int getId() {
+	
+	@Override
+	public Long getId() {
 		return id;
 	}
 
 
-	public Usuario setId(int id) {
+	public Usuario setId(Long id) {
 		this.id = id;
 		return this;
 	}

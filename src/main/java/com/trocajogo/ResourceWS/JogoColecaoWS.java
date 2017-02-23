@@ -35,7 +35,7 @@ public class JogoColecaoWS {
 	
     @GET
     @Produces(TipoDef.APPLICATION_JSON)
-    public List<JogoUsuarioDTO> obterColecaoJogosUsuario(@QueryParam("idUsuario") int idUsuario) {
+    public List<JogoUsuarioDTO> obterColecaoJogosUsuario(@QueryParam("idUsuario") Long idUsuario) {
     	JogoUsuarioRepository jogoRepository = new JogoUsuarioRepository();
     	return jogoRepository.listarJogosColecao(idUsuario);
     }
@@ -46,10 +46,10 @@ public class JogoColecaoWS {
     public Retorno inserirJogoUsuario(MultivaluedMap<String, String> buscaJogosParams) {
     	
     	String strUsuario = buscaJogosParams.getFirst("idUsuario");
-    	int codUsuario = Integer.valueOf(strUsuario);
+    	Long codUsuario = Long.valueOf(strUsuario);
     	
     	int idJogoPlataforma = Integer.valueOf(buscaJogosParams.getFirst("idJogoPlataforma"));
-    	int idUsuario = codUsuario;
+    	Long idUsuario = codUsuario;
     	
     	JogoPlataformaRepository jogoPlataformaCRUD = new JogoPlataformaRepository();
     	JogoUsuarioCRUD jogoUsuarioCrud = new JogoUsuarioCRUD();
@@ -70,7 +70,7 @@ public class JogoColecaoWS {
     
     @DELETE
     @Produces(TipoDef.APPLICATION_JSON)
-    public Retorno removerJogoUsuario(@QueryParam("idUsuario") int idUsuario, @QueryParam("idJogoPlataforma") int idJogoPlataforma) {
+    public Retorno removerJogoUsuario(@QueryParam("idUsuario") Long idUsuario, @QueryParam("idJogoPlataforma") int idJogoPlataforma) {
     	try{
     		JogoUsuarioCRUD jogoUsuarioCrud = new JogoUsuarioCRUD();
         	jogoUsuarioCrud.removerJogoUsuario(idUsuario, idJogoPlataforma, false);

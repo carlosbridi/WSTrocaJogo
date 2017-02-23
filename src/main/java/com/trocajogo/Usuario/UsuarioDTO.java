@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Usuario")
 public class UsuarioDTO {
 	
-	public int id;
+	public Long id;
 	public String nomeUsuario; //nickname
 	public String nome; // Nome do Usu�rio - ok
 	public String senha; // Senha do Usu�rio

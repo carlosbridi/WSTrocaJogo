@@ -54,7 +54,7 @@ public class BuscarJogos  {
     @Produces(TipoDef.APPLICATION_JSON)
     public List<JogoUsuarioDTO> buscarJogosColecaoUsuarios(MultivaluedMap<String, String> buscaJogosParams) {
     	
-    	int idUsuario = Integer.valueOf(buscaJogosParams.getFirst("idUsuario"));
+    	Long idUsuario = Long.valueOf(buscaJogosParams.getFirst("idUsuario"));
     	String nomeJogo = buscaJogosParams.getFirst("nome");
     	int idPlataforma = Integer.valueOf(buscaJogosParams.getFirst("plataforma"));
     	int categoria = Integer.valueOf(buscaJogosParams.getFirst("categoria"));

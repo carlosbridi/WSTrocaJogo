@@ -22,7 +22,7 @@ public class QPlataforma extends EntityPathBase<Plataforma> {
 
     public final StringPath descricao = createString("descricao");
 
-    public final NumberPath<Integer> id = createNumber("id", Integer.class);
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final ListPath<com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma, com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma> jogoPlataforma = this.<com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma, com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma>createList("jogoPlataforma", com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma.class, com.trocajogo.Jogo.JogoPlataforma.QJogoPlataforma.class, PathInits.DIRECT2);
 

@@ -26,9 +26,9 @@ public class QTroca extends EntityPathBase<Troca> {
 
     public final NumberPath<Integer> id = createNumber("id", Integer.class);
 
-    public final NumberPath<Integer> idUsuarioOferta = createNumber("idUsuarioOferta", Integer.class);
+    public final NumberPath<Long> idUsuarioOferta = createNumber("idUsuarioOferta", Long.class);
 
-    public final NumberPath<Integer> idUsuarioTroca = createNumber("idUsuarioTroca", Integer.class);
+    public final NumberPath<Long> idUsuarioTroca = createNumber("idUsuarioTroca", Long.class);
 
     public final com.trocajogo.Troca.ItemTroca.QItemTroca itemTroca;
 

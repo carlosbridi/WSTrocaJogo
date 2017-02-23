@@ -10,10 +10,7 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
 import com.trocajogo.Usuario.UsuarioLogin;
-import com.trocajogo.defs.Retorno;
-import com.trocajogo.defs.TipoDef;
-import com.trocajogo.defs.UserFields;
-
+import com.trocajogo.defs.*;
 
 
 @Path("/login")
@@ -34,9 +31,9 @@ public class LoginUsuario {
     	String senha = usuarioParams.getFirst(UserFields.SENHA);
     	
     	UsuarioLogin usuarioLogin = new UsuarioLogin();
-    	int idUsuario = usuarioLogin.loginUsuario(email, senha);
+    	Long idUsuario = usuarioLogin.loginUsuario(email, senha);
     	
-    	return new Retorno(idUsuario, idUsuario >= 0 ? "" : "Login ou senha inválidos");
+    	return new Retorno((int) (long)idUsuario, idUsuario >= 0 ? "" : "Login ou senha inválidos");
     }
 
 	

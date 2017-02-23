@@ -2,7 +2,7 @@ package com.trocajogo.Jogo.JogoImagem;
 
 import javax.inject.Inject;
 
-import com.generic.ServiceException;
+import com.genericdata.ServiceException;
 
 public class JogoImagemCRUD {
 	
