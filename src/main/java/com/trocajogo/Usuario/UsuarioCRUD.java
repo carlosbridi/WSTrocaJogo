@@ -5,7 +5,6 @@ import static com.trocajogo.Usuario.QUsuario.usuario;
 import java.sql.SQLException;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 import com.genericdata.AbstractService;
 import com.genericdata.EntityConnectionUtils;
@@ -55,22 +54,6 @@ public class UsuarioCRUD extends AbstractService<Usuario> {
 		if (!(anyUsuario == null))
 			throw new ServiceException("Email já cadastrado");
 	}
-//		
-//	private int save(Usuario usuario){
-//		EntityManager em = EntityConnectionUtils.getEntityManager();
-//		try{
-//			em.getTransaction().begin();
-//			if (usuario.getId() == 0)
-//				em.persist(usuario);	
-//			else
-//				em.merge(usuario);
-//			em.getTransaction().commit();
-//		}catch(Exception e){
-//			em.getTransaction().rollback();
-//			em.close();
-//		}		
-//		return usuario.getId();
-//	}
 	
 	public UsuarioDTO buscarDadosUsuario(Long id) throws ServiceException{
 		UsuarioRepository repository = new UsuarioRepository();

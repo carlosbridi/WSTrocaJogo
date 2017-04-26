@@ -1,8 +1,6 @@
 package com.trocajogo.Usuario;
 
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -95,7 +93,6 @@ public class Usuario implements EntityId<Long> {
 	public Long getId() {
 		return id;
 	}
-
 
 	public Usuario setId(Long id) {
 		this.id = id;

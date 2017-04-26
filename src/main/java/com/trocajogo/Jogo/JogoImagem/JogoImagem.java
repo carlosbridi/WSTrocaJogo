@@ -5,13 +5,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.genericdata.EntityId;
+
 @XmlRootElement(name = "JogoImagem")
 @Entity
 @Table(name="jogoimagem")
-public class JogoImagem {
+public class JogoImagem implements EntityId<Long> {
 
 	@Id
-	private int id;
+	private Long id;
 	private int idJogo;
 	private String imagemJogo;
 	
@@ -43,11 +45,12 @@ public class JogoImagem {
 		return this;
 	}
 
-	public int getId() {
+	@Override
+	public Long getId() {
 		return id;
 	}
 
-	public JogoImagem setId(int id) {
+	public JogoImagem setId(Long id) {
 		this.id = id;
 		return this;
 	}

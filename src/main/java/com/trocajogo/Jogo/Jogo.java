@@ -15,8 +15,7 @@ import javax.persistence.Table;
 import com.trocajogo.Jogo.JogoPlataforma.JogoPlataforma;
 import com.trocajogo.Plataforma.Plataforma;
 
-@SequenceGenerator(name="jogoid_seq", sequenceName = "jogoid_seq", 
-					allocationSize = 1, initialValue = 1)
+
 @Entity
 @Table(name="jogo")
 public class Jogo {

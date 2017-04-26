@@ -10,6 +10,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.genericdata.EntityId;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.annotations.QueryDelegate;
 import com.querydsl.core.types.Predicate;
@@ -19,13 +20,13 @@ import com.trocajogo.Usuario.Usuario;
 @Entity
 @Table(name="jogousuario")
 @XmlRootElement(name = "JogoUsuario")
-public class JogoUsuario {
+public class JogoUsuario implements EntityId<Long>{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jogousuarioid_seq")
 	@SequenceGenerator(name="jogousuarioid_seq", sequenceName = "jogousuarioid_seq", 
 	  allocationSize = 1, initialValue = 1)
-	private int id;
+	private Long id;
 	
 	@OneToOne
 	@JoinColumn(name = "idusuario")
@@ -64,10 +65,10 @@ public class JogoUsuario {
 	}
 	 
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public JogoUsuario setId(int id) {
+	public JogoUsuario setId(Long id) {
 		this.id = id;
 		return this;
 	}
